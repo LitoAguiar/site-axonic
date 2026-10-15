@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Axonic</title>
+<meta name="description" content="A Axonic desenvolve o Dandori, a plataforma que coordena múltiplos agentes de IA no desenvolvimento de software em grandes empresas.">
+<link rel="canonical" href="https://axonictec.com/">
+<meta name="theme-color" content="#FFFAF4">
+<link rel="icon" href="assets/axonic-favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/axonic-favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/axonic-apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Axonic">
+<meta property="og:title" content="Axonic · Infraestrutura de IA para empresas que desenvolvem em escala">
+<meta property="og:description" content="A Axonic desenvolve o Dandori, a plataforma que coordena múltiplos agentes de IA no desenvolvimento de software em grandes empresas.">
+<meta property="og:url" content="https://axonictec.com/">
+<meta property="og:image" content="https://axonictec.com/assets/og-axonic.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Axonic · Infraestrutura de IA para empresas que desenvolvem em escala">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Axonic · Infraestrutura de IA para empresas que desenvolvem em escala">
+<meta name="twitter:description" content="A Axonic desenvolve o Dandori, a plataforma que coordena múltiplos agentes de IA no desenvolvimento de software em grandes empresas.">
+<meta name="twitter:image" content="https://axonictec.com/assets/og-axonic.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Axonic", "url": "https://axonictec.com/", "logo": "https://axonictec.com/assets/axonic-icon-512.png", "parentOrganization": {"@type": "Organization", "name": "Grupo VEXO"}, "email": "contato@axonictec.com"}</script>
+<script>
+/* ===== CONFIGURAÇÃO DO SITE: edite só aqui ===== */
+window.AXONIC_CONFIG={
+  GA_ID:'G-5LVP825DQN',                       // ID de métricas do Google Analytics 4
+  RD_PUBLIC_TOKEN:'6c5bc6c31732060cf905348e3a38df14', // token PÚBLICO do RD (conta Hublue). Nunca use o token privado aqui.
+  RD_CONVERSION:'diagnostico-engenharia',     // identificador da conversão no RD
+  CONTACT_EMAIL:'contato@axonictec.com'
+};
+/* dataLayer + consentimento: precisam rodar antes do GTM e do GA */
+window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};
+(function(){var k=null;try{k=localStorage.getItem('axonic_consent')}catch(e){}
+  gtag('consent','default',{analytics_storage:k==='granted'?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});})();
+/* Google Analytics 4 (direto). Não crie no GTM uma tag GA4 com este mesmo ID, para não contar visitas em dobro. */
+(function(c){if(!/^G-[A-Z0-9]{6,}$/.test(c.GA_ID)||/X{6,}/.test(c.GA_ID))return;
+  var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id='+c.GA_ID;document.head.appendChild(s);
+  gtag('js',new Date());gtag('config',c.GA_ID,{anonymize_ip:true});
+})(window.AXONIC_CONFIG);
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PVR7QWKQ');
+</script>
+<!-- End Google Tag Manager -->
+<style>
+/* Layout: Axonic world (cream + drifting peach/sky aurora, Apple-like glass, Archivo) frames the Dandori world (yellow/black, Geist, dotted murmuration) in the middle — brand → product → trust → conversion */
+@font-face{font-family:"Archivo";src:url("fonts/archivo.woff") format("woff");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:"Geist";src:url("fonts/geist.woff") format("woff");font-weight:100 900;font-display:swap}
+:root{
+  --cream:#FFFAF4; --peach:#FFCF93; --peach-soft:#FFE5C2; --sky:#BFE3F2; --ink:#121212;
+  --d-yellow:#FFEA00; --d-ink:#111111; --d-grey:#CFCFD7; --d-paper:#F2F2F5; --white:#FFFFFF;
+  --ink-60:rgba(18,18,18,.62); --ink-12:rgba(18,18,18,.12); --cream-60:rgba(255,250,244,.66); --cream-14:rgba(255,250,244,.14);
+  --f-ax:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-dd:"Geist","Helvetica Neue",Arial,sans-serif;
+  --wrap:1320px; --r:30px; --gut:clamp(16px,3.6vw,40px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;background:var(--cream)}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--f-ax);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.03em;line-height:1.02;text-wrap:balance}
+p{margin:0}
+.eyebrow{font-family:inherit;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+main,footer,.nav{position:relative;z-index:1}
+
+/* ---------- Aurora: slow drifting brand gradient behind the Axonic sections ---------- */
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.aurora i{position:absolute;border-radius:50%;width:70vmax;height:70vmax;will-change:transform;opacity:.5}
+.aurora i:nth-child(1){left:-25vmax;top:-30vmax;background:radial-gradient(circle,var(--peach) 0,rgba(255,207,147,0) 62%);animation:drift1 34s ease-in-out infinite alternate}
+.aurora i:nth-child(2){right:-30vmax;top:-10vmax;background:radial-gradient(circle,var(--sky) 0,rgba(191,227,242,0) 62%);animation:drift2 41s ease-in-out infinite alternate}
+.aurora i:nth-child(3){left:10vmax;bottom:-45vmax;background:radial-gradient(circle,var(--peach-soft) 0,rgba(255,229,194,0) 60%);animation:drift3 47s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(28vmax,22vmax) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-24vmax,30vmax) scale(.9)}}
+@keyframes drift3{to{transform:translate(18vmax,-26vmax) scale(1.2)}}
+
+/* Animated mesh used inside gradient cards */
+.mesh{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(160deg,var(--peach-soft),#EFE3D2 50%,var(--sky))}
+.mesh::before,.mesh::after{content:"";position:absolute;z-index:-1;width:120%;aspect-ratio:1;border-radius:50%;will-change:transform}
+.mesh::before{left:-45%;top:-55%;background:radial-gradient(circle,var(--peach) 0,rgba(255,207,147,0) 60%);animation:m1 18s ease-in-out infinite alternate}
+.mesh::after{right:-50%;bottom:-60%;background:radial-gradient(circle,var(--sky) 0,rgba(191,227,242,0) 60%);animation:m2 22s ease-in-out infinite alternate}
+.mesh.alt{background:linear-gradient(200deg,var(--sky),#E9E6DC 55%,var(--peach-soft))}
+.mesh.alt::before{animation-duration:24s}.mesh.alt::after{animation-duration:16s}
+@keyframes m1{to{transform:translate(38%,30%) scale(1.1)}}
+@keyframes m2{to{transform:translate(-34%,-26%) scale(1.2)}}
+
+/* ---------- Glass ---------- */
+.glass{background:rgba(255,250,244,.3);-webkit-backdrop-filter:blur(22px) saturate(175%);backdrop-filter:blur(22px) saturate(175%);border:1px solid rgba(255,255,255,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -1px 0 rgba(255,255,255,.18),0 18px 40px -22px rgba(18,18,18,.28)}
+.glass-dark{background:rgba(70,66,62,.24);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(255,255,255,.3);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 18px 40px -22px rgba(0,0,0,.45);color:var(--white)}
+.spec{position:relative;overflow:hidden}
+.spec::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(260px circle at var(--mx,50%) var(--my,-40%),rgba(255,255,255,.55),rgba(255,255,255,0) 60%);opacity:0;transition:opacity .35s}
+.spec:hover::after{opacity:1}
+
+/* Signature pill: symbol bubble + label (from the identity) */
+.pill{display:inline-flex;align-items:center;gap:6px}
+.pill .bub{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;flex:none}
+.pill .bub svg{width:24px;height:auto}
+.pill .lab{height:54px;display:flex;align-items:center;padding-inline:22px;border-radius:999px;font-size:18px;letter-spacing:-.01em;white-space:nowrap}
+.pill.sm .bub{width:42px;height:42px}.pill.sm .bub svg{width:19px}.pill.sm .lab{height:42px;font-size:15px;padding-inline:16px}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:999px;font-weight:500;font-size:15.5px;text-decoration:none;border:1px solid transparent;transition:transform .3s var(--ease),background .25s,color .25s;cursor:pointer;font-family:inherit;line-height:1.2}
+.btn:hover{transform:translateY(-2px)}
+.btn .arr{transition:transform .25s}.btn:hover .arr{transform:translateX(4px)}
+.btn-dark{background:var(--ink);color:var(--cream)}
+.btn-glass{color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-block:14px}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;border-radius:999px;padding:9px 9px 9px 24px}
+.nav .logo svg{height:24px;width:auto;display:block}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:15px}
+.nav ul a{text-decoration:none;color:var(--ink-60);transition:color .2s}.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 18px;font-size:14.5px}
+.nav .short{display:none}
+@media (max-width:880px){.nav ul{display:none}}
+@media (max-width:520px){.nav .long{display:none}.nav .short{display:inline}}
+
+/* ---------- HERO (billboard composition from the identity) ---------- */
+.hero{padding-block:10px 28px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hero-grid > *{min-width:0}
+.ph{border-radius:var(--r);overflow:hidden;position:relative;min-height:640px;background:#d9cbb8}
+.ph > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .pill{position:absolute;left:clamp(16px,5%,40px);top:48%}
+.ph .live{position:absolute;right:20px;bottom:20px;border-radius:20px;padding:14px 16px;font-size:13.5px;line-height:1.35;display:flex;flex-direction:column;gap:4px;max-width:250px}
+.ph .live strong{font-family:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;opacity:.8}
+.ph .live span{display:flex;align-items:center;gap:8px}
+.ph .live span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--white);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.hcard{border-radius:var(--r);min-height:640px;padding:clamp(24px,3.4vw,48px);display:grid;grid-template-rows:auto 1fr auto;gap:28px}
+.hcard .top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.hcard .top svg{width:62px;height:auto;flex:none}
+.hcard .top .eyebrow{color:var(--ink-60)}
+.hcard h1{font-size:clamp(46px,5.6vw,86px);font-weight:500;font-stretch:95%;align-self:center}
+.hcard .bot{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end}
+.hcard .wm svg{width:min(100%,250px);height:auto;display:block}
+.hcard .lede{font-size:16px;color:var(--ink-60);margin-bottom:18px;max-width:30em}
+.hcard .lede b{color:var(--ink);font-weight:500}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.trust{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.trust span{border-radius:999px;padding:10px 16px;font-size:14px;display:flex;align-items:center;gap:9px}
+.trust span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink)}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr}.hcard{order:-1;min-height:0}.ph{min-height:440px}.hcard .bot{grid-template-columns:1fr}.hcard .wm{order:2}}
+
+/* ---------- Sections ---------- */
+.section{padding-block:clamp(72px,9vw,132px)}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:52px}
+.sec-head > *{min-width:0}
+.sec-head h2{font-size:clamp(36px,4.6vw,66px)}
+.sec-head p{color:var(--ink-60);font-size:18px;max-width:30em;justify-self:end}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}.sec-head p{justify-self:start}}
+
+/* Manifesto */
+.mani{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.mani > *{min-width:0}
+.mani h2{font-size:clamp(38px,4.8vw,70px);margin-top:20px}
+.mani h2 span{color:var(--ink-60)}
+.mani .body{display:flex;flex-direction:column;gap:18px;margin-top:28px;font-size:18px;color:var(--ink-60)}
+.mani .body b{color:var(--ink);font-weight:500}
+.neuron{border-radius:var(--r);aspect-ratio:1/1.02;max-width:100%;position:relative}
+.neuron canvas{position:absolute;inset:0;width:100%;height:100%}
+.morph{position:absolute;left:16px;right:16px;bottom:16px;border-radius:22px;padding:18px 20px;display:grid;grid-template-columns:auto auto 1fr;gap:10px 16px;align-items:baseline}
+.morph .tok{font-size:clamp(22px,2.4vw,32px);font-weight:600;letter-spacing:-.03em}
+.morph .op{font-family:inherit;font-size:13px;color:var(--ink-60)}
+.morph .def{font-size:14px;color:var(--ink-60)}
+.neuron .tagx{position:absolute;right:16px;top:16px;border-radius:16px;padding:12px 14px;font-size:13px;max-width:220px;line-height:1.35}
+.neuron .tagx b{display:block;font-family:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--ink-60);margin-bottom:4px}
+@media (max-width:900px){.mani{grid-template-columns:1fr}}
+@media (max-width:520px){.morph{grid-template-columns:auto 1fr}.morph .def{grid-column:1/-1;margin-bottom:6px}.neuron{aspect-ratio:auto;min-height:560px}}
+
+/* People / audience */
+.people{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.person{border-radius:26px;min-height:500px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-width:0}
+.person img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:88%;width:auto;max-width:none;object-fit:contain;transition:transform .8s var(--ease)}
+.person:hover img{transform:translateX(-50%) scale(1.03)}
+.person .lbl{position:relative;margin:14px;border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.person .lbl b{font-weight:600;font-size:17px;letter-spacing:-.01em}
+.person .lbl span{font-size:14px;color:var(--ink-60);line-height:1.4}
+.person.intro{justify-content:space-between;padding:26px}
+.person.intro h3{font-size:clamp(28px,2.6vw,38px);font-weight:500}
+.person.intro p{color:var(--ink-60);font-size:15.5px}
+.person.intro svg{width:46px;height:auto}
+@media (max-width:1060px){.people{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.people{grid-template-columns:1fr}.person{min-height:460px}}
+
+/* Versus */
+.vs-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,64px);align-items:start}
+.vs-wrap > *{min-width:0}
+.vs-img{border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:4/5;max-width:100%}
+.vs-img img{width:100%;height:100%;object-fit:cover}
+.vs-img .pill{position:absolute;left:16px;bottom:16px}
+.versus{border-top:1px solid var(--ink)}
+.vs-row{display:grid;grid-template-columns:140px 1fr 1fr;gap:24px;padding-block:22px;border-bottom:1px solid var(--ink-12);align-items:start}
+.vs-row > *{min-width:0}
+.vs-row.head{font-family:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);padding-block:14px}
+.vs-row .k{font-weight:600}
+.vs-row .no{color:var(--ink-60);text-decoration:line-through;text-decoration-color:rgba(18,18,18,.3)}
+@media (max-width:980px){.vs-wrap{grid-template-columns:1fr}.vs-img{aspect-ratio:16/10}}
+@media (max-width:640px){.vs-row{grid-template-columns:1fr;gap:6px}.vs-row.head{display:none}.vs-row .no::before{content:"Não é: ";text-decoration:none;display:inline}}
+
+/* ---------- DANDORI WORLD ---------- */
+.dd{font-family:var(--f-dd);color:var(--d-ink)}
+.dd h1,.dd h2,.dd h3{font-family:inherit;letter-spacing:-.045em}
+.dd-murm{background:var(--d-yellow);padding-block:clamp(48px,6vw,80px) clamp(64px,8vw,112px);overflow:hidden}
+.dd-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.dd-top .dlogo svg{height:34px;width:auto;display:block}
+.dd-top .tag{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.stage{position:relative;margin-top:clamp(20px,3vw,36px);touch-action:pan-y}
+.stage canvas{display:block;width:100%;aspect-ratio:1257/620;max-width:100%;cursor:crosshair}
+.stage-ui{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+.seg{display:inline-flex;border-radius:999px;padding:4px;background:rgba(17,17,17,.06);border:1px solid rgba(17,17,17,.14)}
+.seg button{font-family:inherit;font-size:14px;border:0;background:transparent;color:rgba(17,17,17,.62);padding:10px 16px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s}
+.seg button[aria-pressed="true"]{background:var(--d-ink);color:var(--d-yellow)}
+.stage-ui .hint{font-size:13.5px;color:rgba(17,17,17,.66);display:flex;align-items:center;gap:10px}
+.stage-ui .hint b{font-weight:600;color:var(--d-ink);font-variant-numeric:tabular-nums}
+.dd-intro{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,72px);margin-top:clamp(40px,5vw,72px);align-items:end}
+.dd-intro > *{min-width:0}
+.dd h2.big{font-size:clamp(42px,5.6vw,88px);font-weight:500;line-height:.98}
+.dd-intro p{font-size:17px;line-height:1.6}
+.dd-intro p b{font-weight:600}
+.stat80{display:flex;align-items:flex-end;gap:18px;margin-top:26px;padding-top:22px;border-top:1.5px solid var(--d-ink)}
+.stat80 .n{font-size:clamp(68px,8vw,116px);font-weight:500;letter-spacing:-.06em;line-height:.8;font-variant-numeric:tabular-nums}
+.stat80 p{font-size:15px;max-width:16em;line-height:1.4}
+@media (max-width:760px){.stage canvas{aspect-ratio:1257/900}.dd-intro{grid-template-columns:1fr}}
+
+/* Pillars with nature photo */
+.pillars{background:var(--d-paper)}
+.pillars .sec-head p{color:rgba(17,17,17,.62)}
+.nat{display:grid;grid-template-columns:1.15fr 1fr;gap:14px;margin-bottom:14px}
+.nat > *{min-width:0}
+.nat-ph{border-radius:var(--r);overflow:hidden;position:relative;min-height:420px;background:#c98a55}
+.nat-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.nat-ph .cap{position:absolute;left:16px;bottom:16px;border-radius:18px;padding:14px 16px;max-width:330px;font-size:14px;line-height:1.4}
+.nat-ph .cap b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;opacity:.8;margin-bottom:4px}
+.nat-bird{border-radius:var(--r);background:var(--white);position:relative;overflow:hidden;min-height:420px;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(22px,3vw,36px)}
+.nat-bird img{position:absolute;right:-4%;bottom:-10%;width:56%;height:auto;transition:transform 1.2s var(--ease)}
+.nat-bird:hover img{transform:translate(-3%,-4%) rotate(-2deg)}
+.nat-bird .q{font-size:clamp(24px,2.4vw,34px);font-weight:500;letter-spacing:-.035em;line-height:1.1;max-width:11em;position:relative;z-index:1}
+.nat-bird .src{font-size:13px;color:rgba(17,17,17,.6);position:relative;z-index:1;max-width:15em}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.p-card{background:var(--white);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0;box-shadow:0 30px 60px -40px rgba(17,17,17,.35);transition:transform .5s var(--ease)}
+.p-card:hover{transform:translateY(-4px)}
+.p-art{background:var(--d-yellow);aspect-ratio:1/.86;max-width:100%;position:relative}
+.p-art canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.p-txt{padding:clamp(22px,2.4vw,30px);display:flex;flex-direction:column;gap:34px;flex:1;justify-content:space-between}
+.p-txt h3{font-size:clamp(28px,2.6vw,36px);font-weight:400;letter-spacing:-.04em;line-height:1.05}
+.p-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:18px}
+.p-logo svg{height:16px;width:auto;display:block;color:var(--d-ink)}
+.p-foot p{font-size:13px;line-height:1.4;color:rgba(17,17,17,.72);max-width:17em}
+@media (max-width:900px){.nat{grid-template-columns:1fr}.p-grid{grid-template-columns:1fr}.nat-bird{min-height:360px}}
+
+/* Dandori bento */
+.bento-sec{background:var(--white)}
+.bento{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:340px 340px;gap:14px}
+.tile{border-radius:26px;overflow:hidden;position:relative;background:var(--d-ink);min-width:0}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.tile:hover img{transform:scale(1.04)}
+.tile .chip{position:absolute;left:14px;bottom:14px;right:14px;width:fit-content;max-width:calc(100% - 28px);border-radius:16px;padding:12px 14px;font-size:14px;line-height:1.35}
+.t1{grid-column:1;grid-row:1/3}.t2{grid-column:2/4;grid-row:1}.t3{grid-column:2;grid-row:2}.t4{grid-column:3;grid-row:2}
+@media (max-width:900px){.bento{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:300px}.t1{grid-column:1/3;grid-row:auto;height:auto}.t2{grid-column:1/3;grid-row:auto}.t3,.t4{grid-column:auto;grid-row:auto}}
+@media (max-width:520px){.bento{grid-template-columns:1fr;grid-auto-rows:280px}.t1,.t2,.t3,.t4{grid-column:1}.t1{grid-row:span 1;}}
+
+/* Modules (dark) */
+.mods{background:var(--d-ink);color:var(--white);overflow:hidden}
+.mods .eyebrow{color:var(--d-yellow)}
+.mods-head{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:end;margin-bottom:40px}
+.mods-head > *{min-width:0}
+.mods-head h2{font-size:clamp(38px,4.6vw,66px);margin-top:20px}
+.mods-head p{color:rgba(255,255,255,.62);font-size:18px;margin-top:22px;max-width:30em}
+.neg-logo{display:block;color:var(--white);margin-bottom:34px}
+.neg-logo svg{height:40px;width:auto;display:block}
+.mods-head .who{position:relative;height:460px;border-radius:var(--r);overflow:hidden;background:var(--d-yellow);isolation:isolate}
+.mods-head .who img{position:absolute;left:50%;bottom:0;transform:translateX(-38%);height:96%;width:auto;max-width:none}
+.gsym,.gline{position:absolute;left:40%;top:-24%;width:118%;aspect-ratio:400/309;height:auto}
+.gsym{-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20309%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M0%20308%20199%20308%20200%20307%20213%20306%20214%20305%20222%20303%20225%20301%20227%20301%20231%20299%20233%20297%20237%20296%20239%20294%20242%20293%20242%20292%20247%20288%20248%20288%20264%20271%20264%20270%20269%20264%20271%20260%20279%20251%20279%20250%20284%20244%20286%20240%20291%20235%20291%20234%20296%20228%20298%20224%20306%20215%20306%20214%20311%20208%20313%20204%20318%20199%20318%20198%20323%20192%20325%20188%20333%20179%20333%20178%20338%20172%20340%20168%20345%20163%20345%20162%20350%20156%20352%20152%20357%20147%20357%20146%20360%20143%20360%20142%20365%20136%20367%20132%20372%20127%20372%20126%20377%20120%20379%20116%20387%20107%20387%20106%20392%20100%20394%2096%20399%2091%20291%2091%20289%2090%20285%2086%20284%2086%20280%2082%20279%2082%20275%2078%20274%2078%20270%2074%20269%2074%20260%2065%20259%2065%20255%2061%20254%2061%20250%2057%20249%2057%20245%2053%20244%2053%20236%2045%20235%2045%20231%2041%20230%2041%20226%2037%20225%2037%20221%2033%20220%2033%20216%2029%20215%2029%20206%2020%20205%2020%20202%2017%20199%2016%20191%2010%20187%208%20185%208%20182%206%20180%206%20177%204%20175%204%20174%203%20171%203%20170%202%20165%202%20164%201%20157%201%20156%200%2037%200%2045%2010%2045%2011%2052%2018%2052%2019%2064%2033%2064%2034%2071%2041%2071%2042%2079%2051%2079%2052%2086%2060%2086%2061%2093%2068%2093%2069%20101%2078%20101%2079%20104%2082%20104%2083%20111%2090%20111%2091%20115%2095%20115%2096%20119%20100%20119%20101%20123%20105%20123%20106%20130%20113%20130%20114%20141%20127%20141%20128%20145%20132%20145%20133%20152%20140%20152%20141%20160%20150%20160%20151%20163%20154%20163%20155%20170%20162%20170%20163%20182%20177%20182%20178%20185%20181%20185%20182%20193%20190%20193%20191%20196%20194%20196%20195%20200%20199%20199%20200%20120%20200%20119%20201%20111%20202%20107%20204%20103%20204%2098%20207%2096%20207%2088%20211%2086%20213%2079%20217%2075%20221%2074%20221%2065%20230%2065%20231%2061%20235%2061%20236%2057%20240%2057%20241%2054%20243%2054%20244%2049%20249%2049%20250%2045%20254%2045%20255%2041%20259%2041%20260%2037%20264%2037%20265%2029%20273%2029%20274%2020%20284%2020%20285%2016%20289%2016%20290%208%20298%208%20299Z%22/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20400%20309%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M0%20308%20199%20308%20200%20307%20213%20306%20214%20305%20222%20303%20225%20301%20227%20301%20231%20299%20233%20297%20237%20296%20239%20294%20242%20293%20242%20292%20247%20288%20248%20288%20264%20271%20264%20270%20269%20264%20271%20260%20279%20251%20279%20250%20284%20244%20286%20240%20291%20235%20291%20234%20296%20228%20298%20224%20306%20215%20306%20214%20311%20208%20313%20204%20318%20199%20318%20198%20323%20192%20325%20188%20333%20179%20333%20178%20338%20172%20340%20168%20345%20163%20345%20162%20350%20156%20352%20152%20357%20147%20357%20146%20360%20143%20360%20142%20365%20136%20367%20132%20372%20127%20372%20126%20377%20120%20379%20116%20387%20107%20387%20106%20392%20100%20394%2096%20399%2091%20291%2091%20289%2090%20285%2086%20284%2086%20280%2082%20279%2082%20275%2078%20274%2078%20270%2074%20269%2074%20260%2065%20259%2065%20255%2061%20254%2061%20250%2057%20249%2057%20245%2053%20244%2053%20236%2045%20235%2045%20231%2041%20230%2041%20226%2037%20225%2037%20221%2033%20220%2033%20216%2029%20215%2029%20206%2020%20205%2020%20202%2017%20199%2016%20191%2010%20187%208%20185%208%20182%206%20180%206%20177%204%20175%204%20174%203%20171%203%20170%202%20165%202%20164%201%20157%201%20156%200%2037%200%2045%2010%2045%2011%2052%2018%2052%2019%2064%2033%2064%2034%2071%2041%2071%2042%2079%2051%2079%2052%2086%2060%2086%2061%2093%2068%2093%2069%20101%2078%20101%2079%20104%2082%20104%2083%20111%2090%20111%2091%20115%2095%20115%2096%20119%20100%20119%20101%20123%20105%20123%20106%20130%20113%20130%20114%20141%20127%20141%20128%20145%20132%20145%20133%20152%20140%20152%20141%20160%20150%20160%20151%20163%20154%20163%20155%20170%20162%20170%20163%20182%20177%20182%20178%20185%20181%20185%20182%20193%20190%20193%20191%20196%20194%20196%20195%20200%20199%20199%20200%20120%20200%20119%20201%20111%20202%20107%20204%20103%20204%2098%20207%2096%20207%2088%20211%2086%20213%2079%20217%2075%20221%2074%20221%2065%20230%2065%20231%2061%20235%2061%20236%2057%20240%2057%20241%2054%20243%2054%20244%2049%20249%2049%20250%2045%20254%2045%20255%2041%20259%2041%20260%2037%20264%2037%20265%2029%20273%2029%20274%2020%20284%2020%20285%2016%20289%2016%20290%208%20298%208%20299Z%22/%3E%3C/svg%3E") center/100% 100% no-repeat;-webkit-backdrop-filter:blur(16px) saturate(140%) brightness(1.04);backdrop-filter:blur(16px) saturate(140%) brightness(1.04);background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.04) 55%)}
+.gline{pointer-events:none;overflow:visible}
+.gline path{fill:none;stroke:rgba(255,255,255,.9);stroke-width:1.4;vector-effect:non-scaling-stroke}
+.mods-head .who .chip{position:absolute;left:16px;bottom:16px;border-radius:16px;padding:12px 14px;font-size:13.5px;max-width:230px;z-index:2}
+.mods-head .who .chip b{display:block;color:var(--d-yellow);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+@media (max-width:860px){.mods-head{grid-template-columns:1fr}.mods-head .who{height:400px}}
+.m-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);overflow:hidden;position:relative}
+.m{background:var(--d-ink);padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:14px;min-width:0;transition:background .3s}
+.m:hover{background:#1a1a1a}
+.m .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.m h3{font-size:clamp(26px,2.6vw,34px);font-weight:500;letter-spacing:-.035em}
+.m h3 .y{color:var(--d-yellow)}
+.m p{color:rgba(255,255,255,.66);font-size:16px;max-width:30em}
+.m ul{list-style:none;margin:6px 0 0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-direction:column;gap:8px;font-size:14.5px;color:rgba(255,255,255,.82)}
+.m li{display:flex;gap:10px}.m li::before{content:"";flex:none;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--d-yellow)}
+@media (max-width:760px){.m-grid{grid-template-columns:1fr}}
+.seq{margin-top:clamp(48px,6vw,88px);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:clamp(20px,3vw,36px)}
+.seq-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-bottom:26px}
+.seq-top h3{font-size:clamp(24px,2.4vw,32px);font-weight:500;letter-spacing:-.035em}
+.seq-top p{color:rgba(255,255,255,.55);font-size:14px;margin-top:6px}
+.mods .seg{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}
+.mods .seg button{color:rgba(255,255,255,.65)}
+.mods .seg button[aria-pressed="true"]{background:var(--d-yellow);color:var(--d-ink)}
+.gantt-wrap{overflow-x:auto}
+.gantt{min-width:640px;display:grid;grid-template-columns:150px 1fr;row-gap:10px;font-size:13px}
+.gantt .ln{color:rgba(255,255,255,.72);display:flex;align-items:center}
+.track{position:relative;height:34px;border-radius:8px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 10%)}
+.bar{position:absolute;top:4px;bottom:4px;border-radius:6px;background:var(--white);transition:left .9s cubic-bezier(.7,0,.2,1),width .9s cubic-bezier(.7,0,.2,1),opacity .5s}
+.bar.prep{background:var(--d-yellow)}
+.gap{position:absolute;top:4px;bottom:4px;border-radius:6px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.22) 0 2px,transparent 2px 7px);transition:left .9s cubic-bezier(.7,0,.2,1),width .9s cubic-bezier(.7,0,.2,1),opacity .6s}
+.axis{grid-column:2;display:flex;justify-content:space-between;color:rgba(255,255,255,.42);font-size:11.5px;font-variant-numeric:tabular-nums;padding-top:4px}
+.seq-foot{display:flex;flex-wrap:wrap;gap:24px 40px;margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12)}
+.kpi .v{font-size:clamp(30px,3.4vw,44px);font-weight:500;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.kpi .l{font-size:13px;color:rgba(255,255,255,.55)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(255,255,255,.62);margin-left:auto;align-self:flex-end}
+.legend span{display:flex;align-items:center;gap:7px}
+.legend i{width:14px;height:10px;border-radius:3px;display:inline-block}
+
+/* ---------- HOW: photo with glass steps bar ---------- */
+.how-ph{border-radius:var(--r);overflow:hidden;position:relative;min-height:600px;background:#c9b9a5}
+.how-ph > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.steps{position:absolute;left:16px;right:16px;bottom:16px;border-radius:24px;display:grid;grid-template-columns:repeat(5,1fr);padding:8px}
+.step{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;min-width:0;border-left:1px solid rgba(255,255,255,.22)}
+.step:first-child{border-left:0}
+.step .n{font-family:inherit;font-size:12px;opacity:.75;font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.step h3{font-size:20px;font-weight:600;letter-spacing:-.02em}
+.step p{font-size:14px;opacity:.86;line-height:1.45}
+@media (max-width:980px){.how-ph{min-height:0;overflow:visible;background:none}.how-ph > img{position:relative;height:360px;border-radius:var(--r)}.steps{position:relative;left:auto;right:auto;bottom:auto;margin-top:12px;grid-template-columns:1fr 1fr;color:var(--ink);background:rgba(255,250,244,.4);border-color:rgba(255,255,255,.7)}.step{border-left:0;border-top:1px solid var(--ink-12)}.step:nth-child(-n+2){border-top:0}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}.step:nth-child(2){border-top:1px solid var(--ink-12)}}
+
+/* ---------- SECURITY ---------- */
+.secb{margin-inline:var(--gut);border-radius:var(--r);padding-block:clamp(56px,7vw,104px)}
+.sec-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center}
+.sec-grid > *{min-width:0}
+.sec-grid h2{font-size:clamp(36px,4.4vw,62px);margin-top:20px}
+.sec-grid .lede{margin-top:18px;color:var(--ink-60);font-size:18px;max-width:30em}
+.shield{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
+.sh{border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.sh .t{font-weight:600;font-size:17px}
+.sh p{font-size:14.5px;color:var(--ink-60)}
+.sh .ic{width:34px;height:34px;border-radius:10px;background:var(--ink);color:var(--cream);display:grid;place-items:center;margin-bottom:8px}
+.sec-ph{border-radius:24px;overflow:hidden;aspect-ratio:4/5;position:relative;max-width:100%}
+.sec-ph img{width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+@media (max-width:900px){.sec-grid{grid-template-columns:1fr}.sec-ph{aspect-ratio:16/11}}
+@media (max-width:480px){.shield{grid-template-columns:1fr}}
+
+/* ---------- CTA ---------- */
+.cta{background:var(--ink);color:var(--cream);border-radius:var(--r);margin-inline:var(--gut);padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(20px,3vw,40px)}
+.cta > *{min-width:0}
+.cta-copy{padding:clamp(16px,3vw,40px);display:flex;flex-direction:column;justify-content:center}
+.cta .eyebrow{color:var(--peach)}
+.cta h2{font-size:clamp(38px,4.8vw,70px);margin-top:20px}
+.cta .lede{color:var(--cream-60);font-size:18px;margin-top:20px;max-width:28em}
+.cta ol{margin:28px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;counter-reset:c}
+.cta ol li{display:grid;grid-template-columns:34px 1fr;gap:12px;color:var(--cream-60);font-size:15.5px;counter-increment:c}
+.cta ol li::before{content:counter(c,decimal-leading-zero);font-family:inherit;color:var(--peach);font-size:13px;padding-top:2px}
+.cta ol li b{color:var(--cream);font-weight:500}
+.cta-vis{border-radius:24px;overflow:hidden;position:relative;padding:clamp(14px,2.4vw,28px);display:flex;align-items:flex-end;min-height:640px}
+.cta-vis > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+form.diag{position:relative;width:100%;border-radius:22px;padding:clamp(18px,2.6vw,28px);display:grid;grid-template-columns:1fr 1fr;gap:12px;background:rgba(18,18,18,.42);-webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font-family:inherit;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-60)}
+.f input,.f select,.f textarea{font-family:var(--f-ax);font-size:16px;color:var(--cream);background:rgba(255,250,244,.08);border:1px solid rgba(255,250,244,.2);border-radius:12px;padding:12px 14px;width:100%;transition:border-color .2s}
+.f select option{color:var(--ink)}
+.f textarea{min-height:84px;resize:vertical}
+.f input::placeholder,.f textarea::placeholder{color:rgba(255,250,244,.45)}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--peach);outline:none}
+.diag .btn{grid-column:1/-1;justify-content:center;background:linear-gradient(100deg,var(--peach),var(--sky));color:var(--ink);font-size:16px}
+.diag .note{grid-column:1/-1;font-size:12.5px;color:var(--cream-60);text-align:center}
+.ok{grid-column:1/-1;border-radius:14px;padding:16px;background:rgba(191,227,242,.14);border:1px solid rgba(191,227,242,.4);font-size:15px}
+@media (max-width:960px){.cta{grid-template-columns:1fr}.cta-vis{min-height:0;padding-top:200px}}
+@media (max-width:480px){form.diag{grid-template-columns:1fr}}
+
+/* ---------- FOOTER ---------- */
+footer{padding-block:72px 40px}
+.ft{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.ft > *{min-width:0}
+.ft .logo svg{height:30px;width:auto;display:block}
+.ft p{color:var(--ink-60);font-size:15px;margin-top:16px;max-width:22em}
+.ft h4{font-family:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);font-weight:500;margin:0 0 14px}
+.ft ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px}
+.ft a{text-decoration:none}.ft a:hover{text-decoration:underline}
+.fb{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid var(--ink-12);font-size:13.5px;color:var(--ink-60)}
+.fb b{color:var(--ink);font-weight:600}
+@media (max-width:860px){.ft{grid-template-columns:1fr 1fr}}
+
+.reveal{transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.pre{opacity:.001;transform:translateY(28px)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal.pre{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* ---------- v4 additions ---------- */
+.link-arrow{display:inline-flex;align-items:center;gap:10px;font-weight:500;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:3px;transition:gap .3s var(--ease)}
+.link-arrow:hover{gap:16px}
+.btn-yellow{background:var(--d-yellow);color:var(--d-ink)}
+.btn-ink{background:var(--d-ink);color:var(--d-yellow)}
+.dd-cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:30px}
+/* Dandori page */
+.ddp{font-family:var(--f-dd);background:var(--white);color:var(--d-ink)}
+.ddp .nav-in{background:rgba(255,255,255,.45)}
+.ddp .nav .logo svg{height:26px}
+.ddp .nav .by{font-size:13px;color:rgba(17,17,17,.6);text-decoration:none;margin-left:12px;white-space:nowrap}
+.ddp .nav .by:hover{color:var(--d-ink)}
+.ddp .brand{display:flex;align-items:center;min-width:0}
+@media (max-width:520px){.ddp .nav .by{display:none}.ddp .nav-in{padding-left:18px}}
+.ddp .btn-dark{background:var(--d-ink);color:var(--d-yellow)}
+.ddp .eyebrow{color:inherit}
+.ddh{background:var(--d-yellow);margin-top:-86px;padding-block:130px clamp(56px,7vw,96px)}
+.ddh h1{font-size:clamp(46px,7vw,108px);font-weight:500;line-height:.96;letter-spacing:-.05em;max-width:12.5em;margin-top:22px}
+.ddh .sub{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,72px);align-items:end;margin-top:34px}
+.ddh .sub > *{min-width:0}
+.ddh .sub p{font-size:clamp(17px,1.5vw,20px);line-height:1.55;max-width:34em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chips span{font-size:13.5px;border:1px solid rgba(17,17,17,.2);border-radius:999px;padding:8px 14px;display:flex;align-items:center;gap:8px}
+.chips span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--d-ink)}
+@media (max-width:860px){.ddh .sub{grid-template-columns:1fr}}
+.prob{display:grid;grid-template-columns:.9fr 1.1fr;gap:14px}
+.prob > *{min-width:0}
+.prob-ph{border-radius:var(--r);overflow:hidden;position:relative;min-height:520px;background:#ddd}
+.prob-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.prob-ph .chip{position:absolute;left:16px;bottom:16px;border-radius:16px;padding:13px 15px;font-size:15px;max-width:280px}
+.pains{display:grid;grid-template-rows:repeat(3,1fr);gap:14px}
+.pain{background:var(--d-paper);border-radius:24px;padding:clamp(22px,2.6vw,32px);display:grid;grid-template-columns:auto 1fr;gap:6px 20px;align-items:start}
+.pain .ic{grid-row:1/3;width:52px;height:52px;border-radius:14px;background:var(--d-ink);display:grid;place-items:center}
+.pain .ic canvas{width:40px;height:40px}
+.pain h3{font-size:24px;font-weight:500;letter-spacing:-.035em}
+.pain p{font-size:16px;color:rgba(17,17,17,.68);line-height:1.5}
+@media (max-width:900px){.prob{grid-template-columns:1fr}.prob-ph{min-height:380px}}
+.method{background:var(--d-yellow)}
+.method-head{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,72px);align-items:end;margin-bottom:56px}
+.method-head > *{min-width:0}
+.method-head .n{font-size:clamp(110px,16vw,240px);font-weight:500;letter-spacing:-.07em;line-height:.78}
+.method-head h2{font-size:clamp(34px,4.2vw,60px);font-weight:500;letter-spacing:-.045em}
+.method-head p{margin-top:16px;font-size:17px;max-width:32em;line-height:1.55}
+.msteps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--d-ink)}
+.mstep{padding:22px 22px 0 0;position:relative;display:flex;flex-direction:column;gap:10px;min-width:0}
+.mstep::before{content:"";position:absolute;top:-6px;left:0;width:11px;height:11px;border-radius:50%;background:var(--d-ink)}
+.mstep .k{font-size:13px;letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.mstep h3{font-size:26px;font-weight:500;letter-spacing:-.035em}
+.mstep p{font-size:15.5px;line-height:1.5;color:rgba(17,17,17,.78)}
+@media (max-width:900px){.msteps{grid-template-columns:1fr 1fr;row-gap:34px}.method-head{grid-template-columns:1fr}}
+@media (max-width:520px){.msteps{grid-template-columns:1fr}}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.case{border:1.5px dashed rgba(17,17,17,.28);border-radius:24px;padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0;background:var(--white)}
+.case .todo{align-self:flex-start;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;background:var(--d-yellow);border-radius:999px;padding:5px 10px;font-weight:500}
+.case .who{font-size:14px;color:rgba(17,17,17,.6)}
+.case .big{font-size:clamp(52px,5vw,72px);font-weight:500;letter-spacing:-.06em;line-height:.9;color:rgba(17,17,17,.3)}
+.case .kpi-l{font-size:15px}
+.case blockquote{margin:auto 0 0;padding-top:16px;border-top:1px solid rgba(17,17,17,.12);font-size:15px;color:rgba(17,17,17,.55);line-height:1.5}
+@media (max-width:900px){.cases{grid-template-columns:1fr}}
+.model{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mcard{border-radius:24px;padding:clamp(24px,2.8vw,34px);display:flex;flex-direction:column;gap:14px;min-width:0;background:var(--d-paper)}
+.mcard.hl{background:var(--d-ink);color:var(--white)}
+.mcard .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.mcard h3{font-size:clamp(26px,2.6vw,34px);font-weight:500;letter-spacing:-.04em}
+.mcard p{font-size:16px;line-height:1.5;opacity:.78}
+.mcard ul{list-style:none;margin:auto 0 0;padding:18px 0 0;border-top:1px solid currentColor;border-color:rgba(127,127,127,.3);display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+.mcard li{display:flex;gap:10px}.mcard li::before{content:"";flex:none;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--d-yellow)}
+.mcard:not(.hl) li::before{background:var(--d-ink)}
+@media (max-width:900px){.model{grid-template-columns:1fr}}
+.faq{border-top:1.5px solid var(--d-ink);max-width:980px}
+.faq details{border-bottom:1px solid rgba(17,17,17,.14)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;padding-block:24px;font-size:clamp(19px,1.8vw,24px);font-weight:500;letter-spacing:-.025em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:28px;font-weight:300;transition:transform .3s var(--ease);flex:none}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:24px;font-size:17px;line-height:1.6;color:rgba(17,17,17,.72);max-width:44em}
+.ddp .cta{background:var(--d-ink)}
+.ddp .cta .eyebrow{color:var(--d-yellow)}
+.ddp .diag .btn{background:var(--d-yellow);color:var(--d-ink)}
+.ddp .f input,.ddp .f select,.ddp .f textarea{font-family:var(--f-dd)}
+.ddp .f input:focus,.ddp .f select:focus,.ddp .f textarea:focus{border-color:var(--d-yellow)}
+.ddp footer .fb b{color:var(--d-ink)}
+.ddp .ft .logo svg{height:28px}
+
+.optin{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--cream-60);line-height:1.45;cursor:pointer}
+.optin input{margin-top:2px;width:16px;height:16px;accent-color:var(--peach);flex:none}
+.ddp .optin input{accent-color:var(--d-yellow)}
+.f [aria-invalid="true"]{border-color:var(--peach)!important}
+.ok[data-state="err"]{background:rgba(255,207,147,.12);border-color:rgba(255,207,147,.5)}
+.diag .btn:disabled{opacity:.6;cursor:wait;transform:none}
+
+.h-touch{display:none}
+@media (hover:none) and (pointer:coarse){.h-mouse{display:none}.h-touch{display:inline}}
+.fb a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.diag .note a{color:inherit;text-decoration:underline}
+/* cookie notice */
+.cookie{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;width:min(760px,calc(100% - 32px));display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 16px 14px 20px;border-radius:20px;background:rgba(18,18,18,.86);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);color:#FFFAF4;font-size:14px;line-height:1.45;box-shadow:0 20px 50px -20px rgba(0,0,0,.5)}
+.cookie p{flex:1;min-width:220px;margin:0}
+.cookie a{color:inherit;text-decoration:underline}
+.cookie .cb{display:flex;gap:8px}
+.cookie button{font:inherit;font-size:14px;border-radius:999px;padding:10px 16px;cursor:pointer;border:1px solid rgba(255,250,244,.35);background:transparent;color:inherit}
+.cookie button.ok2{background:#FFFAF4;color:#121212;border-color:#FFFAF4;font-weight:500}
+.ddp .cookie button.ok2{background:#FFEA00;border-color:#FFEA00;color:#111}
+/* legal page */
+.legal{padding-block:clamp(40px,6vw,80px) clamp(64px,8vw,112px)}
+.legal-card{max-width:860px;margin-inline:auto;border-radius:var(--r);padding:clamp(24px,5vw,64px)}
+.legal h1{font-size:clamp(36px,5vw,64px);margin-top:18px}
+.legal .upd{color:var(--ink-60);font-size:14px;margin-top:14px}
+.legal h2{font-size:clamp(22px,2.2vw,28px);margin-top:44px;letter-spacing:-.02em}
+.legal p,.legal li{font-size:16.5px;line-height:1.7;color:rgba(18,18,18,.82);max-width:68ch}
+.legal p{margin-top:14px}
+.legal ul{margin:12px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.legal table{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px}
+.legal th,.legal td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--ink-12);vertical-align:top}
+.legal th{font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-60)}
+.legal .tbl{overflow-x:auto}
+.legal .todo{background:#FFE5C2;border-radius:6px;padding:1px 6px;font-weight:500}
+</style>
+</head>
+<body data-page="axonic">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVR7QWKQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-in glass">
+      <a class="logo" href="#topo" aria-label="Axonic, início"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220"><path fill-rule="evenodd" fill="currentColor" d="M539 73 539 192 564 192 564 73ZM630 70 629 71 624 71 623 72 620 72 619 73 614 74 604 79 600 82 590 93 585 102 585 104 582 110 581 117 580 118 580 124 579 125 579 140 580 141 581 152 582 153 584 161 592 175 601 184 613 191 615 191 622 194 627 194 628 195 647 195 648 194 656 193 666 189 672 185 682 175 688 164 688 162 690 158 690 155 691 154 691 150 665 150 663 158 660 163 655 168 645 173 629 173 622 170 619 168 612 160 608 152 608 149 606 144 606 122 607 121 607 117 608 116 609 111 612 105 617 99 627 93 630 93 631 92 643 92 644 93 650 94 656 98 662 105 666 115 691 115 691 111 690 110 689 103 683 91 680 87 671 79 664 75 662 75 659 73 652 72 651 71 645 71 644 70ZM504 78 495 73 493 73 489 71 484 71 483 70 471 70 470 71 465 71 464 72 459 73 450 78 446 81 439 89 438 88 438 73 413 73 413 192 439 192 439 118 440 117 441 111 446 102 453 96 461 93 475 93 482 96 489 103 491 106 491 108 493 112 493 192 519 192 519 109 518 108 518 103 517 102 517 99 516 98 515 93 510 84ZM325 71 324 72 321 72 320 73 317 73 314 75 312 75 303 80 292 90 286 99 281 112 280 120 279 121 279 144 280 145 280 149 281 150 282 157 287 168 291 174 301 184 311 190 313 190 319 193 328 194 329 195 349 195 350 194 358 193 359 192 364 191 376 184 389 170 394 160 394 158 396 154 396 151 397 150 397 146 398 145 398 134 399 132 398 131 398 120 397 119 397 115 395 111 395 108 390 97 386 91 373 79 363 74 361 74 357 72 353 72 352 71 347 71 346 70 332 70 331 71ZM332 92 345 92 346 93 350 93 358 97 366 106 371 118 371 123 372 124 372 142 371 143 371 147 370 148 369 154 366 160 357 169 347 173 330 173 322 170 312 161 308 153 307 147 306 146 306 141 305 140 305 125 306 124 306 119 307 118 307 115 309 112 309 110 311 106 318 98 325 94 331 93ZM547 27 546 28 544 28 538 34 537 39 536 40 536 44 539 51 543 55 548 57 555 57 560 55 564 51 567 44 566 36 559 28 557 28 556 27ZM0 192 29 192 31 188 32 183 34 180 35 175 37 172 38 167 40 164 41 159 43 156 43 154 45 152 118 152 121 157 122 162 124 165 124 167 126 170 127 175 129 178 130 183 132 186 132 188 134 192 188 192 197 180 199 176 205 169 207 165 210 162 215 154 217 153 223 160 225 164 228 167 245 192 275 192 265 177 262 174 260 170 257 167 255 163 252 160 250 156 247 153 245 149 242 146 240 142 237 139 235 135 232 132 232 130 237 124 239 120 242 117 244 113 247 110 249 106 252 103 254 99 257 96 259 92 262 89 264 85 273 73 244 73 238 80 236 84 233 87 231 91 228 94 226 98 217 110 190 73 160 73 202 131 194 143 191 146 189 150 186 153 184 157 173 171 171 175 168 178 163 186 161 187 159 184 159 182 153 169 152 164 150 161 150 159 144 146 143 141 141 138 141 136 135 123 134 118 132 115 132 113 126 100 125 95 123 92 123 90 121 87 121 85 115 72 114 67 112 64 112 62 110 59 110 57 108 54 108 52 106 49 105 44 103 41 103 39 101 36 101 34 99 31 98 27 65 27 63 31 63 33 61 36 61 38 59 41 56 51 54 54 54 56 52 59 52 61 50 64 49 69 47 72 47 74 41 87 40 92 38 95 38 97 36 100 36 102 30 115 29 120 27 123 27 125 21 138 20 143 18 146 18 148 12 161 11 166 9 169 9 171 3 184 2 189ZM81 55 83 56 84 61 86 64 86 66 89 72 90 77 92 80 93 85 95 88 95 90 97 93 101 106 103 109 104 114 106 117 107 122 109 125 109 127 108 128 55 128 54 127 55 122 57 119 58 114 60 111 61 106 63 103 64 98 66 95 67 90 69 87 70 82 72 79 73 74 75 71 76 66ZM937 0 863 74 862 74 858 78 848 83 839 84 838 85 833 85 832 84 826 84 816 80 809 75 771 37 763 45 763 46 795 78 797 83 797 90 795 95 792 99 786 103 783 103 782 104 739 104 739 115 782 115 783 116 788 117 796 126 796 128 797 129 797 136 793 144 763 174 771 182 809 144 816 139 827 135 833 135 834 134 844 135 845 136 848 136 851 138 853 138 855 140 858 141 936 219 937 219 945 211 877 143 874 137 874 128 877 122 883 117 888 116 889 115 999 115 999 104 889 104 888 103 883 102 877 97 874 91 874 82 877 76 945 8Z"/></svg></a>
+      <ul>
+        <li><a href="#manifesto">Axonic</a></li>
+        <li><a href="dandori.html">Dandori</a></li>
+        <li><a href="#como">Como trabalhamos</a></li>
+        <li><a href="#seguranca">Segurança</a></li>
+      </ul>
+      <a class="btn btn-dark" href="#contato"><span class="long">Agendar diagnóstico</span><span class="short">Contato</span> <span class="arr">→</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="topo">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="ph">
+        <img src="img/ax-laptop.webp" alt="Executiva sorrindo enquanto trabalha no notebook em um escritório claro" fetchpriority="high">
+        <div class="pill"><span class="bub glass-dark"><svg aria-hidden="true" focusable="false" style="color:#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 336"><path fill-rule="evenodd" fill="currentColor" d="M303 0 302 0 302 1 300 3 299 3 299 4 297 6 296 6 295 8 293 9 292 11 290 12 289 14 287 15 286 17 284 18 283 20 281 21 280 23 278 24 277 26 275 27 184 118 176 122 174 124 172 124 166 127 162 127 161 128 158 128 157 129 151 129 150 130 147 130 146 129 139 129 138 128 135 128 134 127 129 127 127 125 125 125 122 123 120 123 118 121 117 121 115 119 112 118 109 115 108 115 50 57 49 57 37 69 37 70 85 118 85 119 87 121 87 123 88 124 88 128 89 129 89 136 88 137 88 141 86 145 79 153 78 153 73 157 69 157 68 158 0 158 0 177 68 177 69 178 73 178 78 182 79 182 83 186 83 187 86 190 88 194 88 198 89 199 89 206 88 207 88 211 87 212 87 214 85 216 85 217 37 265 37 266 49 278 50 278 108 220 109 220 112 217 115 216 118 213 122 211 124 211 129 208 133 208 134 207 138 207 139 206 144 206 145 205 157 206 158 207 166 208 172 211 174 211 176 213 184 217 275 308 276 308 277 310 279 311 280 313 282 314 283 316 285 317 286 319 288 320 289 322 291 323 292 325 294 326 295 328 297 329 299 331 299 332 300 332 302 334 302 335 303 335 316 322 244 250 243 250 242 248 240 247 239 245 237 244 236 242 234 241 233 239 231 238 230 236 228 235 227 233 225 232 224 230 222 229 220 227 220 226 219 226 217 224 217 223 216 223 214 221 214 220 210 216 210 214 208 212 208 209 207 208 207 197 208 196 208 194 211 188 218 181 224 178 227 178 228 177 399 177 399 158 228 158 227 157 224 157 218 154 210 145 208 141 208 138 207 137 207 127 210 121 210 119 212 117 212 116 214 115 214 114 216 112 217 112 217 111 219 109 220 109 220 108 222 106 223 106 224 104 226 103 227 101 229 100 230 98 232 97 233 95 235 94 236 92 238 91 239 89 241 88 242 86 244 85 316 13Z"/></svg></span><span class="lab glass-dark">Ciência, dados e automação</span></div>
+        <div class="live glass-dark"><strong>Em produção</strong><span>Agentes coordenados em grandes times de engenharia</span></div>
+      </div>
+      <div class="hcard mesh spec">
+        <div class="top"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 336"><path fill-rule="evenodd" fill="currentColor" d="M303 0 302 0 302 1 300 3 299 3 299 4 297 6 296 6 295 8 293 9 292 11 290 12 289 14 287 15 286 17 284 18 283 20 281 21 280 23 278 24 277 26 275 27 184 118 176 122 174 124 172 124 166 127 162 127 161 128 158 128 157 129 151 129 150 130 147 130 146 129 139 129 138 128 135 128 134 127 129 127 127 125 125 125 122 123 120 123 118 121 117 121 115 119 112 118 109 115 108 115 50 57 49 57 37 69 37 70 85 118 85 119 87 121 87 123 88 124 88 128 89 129 89 136 88 137 88 141 86 145 79 153 78 153 73 157 69 157 68 158 0 158 0 177 68 177 69 178 73 178 78 182 79 182 83 186 83 187 86 190 88 194 88 198 89 199 89 206 88 207 88 211 87 212 87 214 85 216 85 217 37 265 37 266 49 278 50 278 108 220 109 220 112 217 115 216 118 213 122 211 124 211 129 208 133 208 134 207 138 207 139 206 144 206 145 205 157 206 158 207 166 208 172 211 174 211 176 213 184 217 275 308 276 308 277 310 279 311 280 313 282 314 283 316 285 317 286 319 288 320 289 322 291 323 292 325 294 326 295 328 297 329 299 331 299 332 300 332 302 334 302 335 303 335 316 322 244 250 243 250 242 248 240 247 239 245 237 244 236 242 234 241 233 239 231 238 230 236 228 235 227 233 225 232 224 230 222 229 220 227 220 226 219 226 217 224 217 223 216 223 214 221 214 220 210 216 210 214 208 212 208 209 207 208 207 197 208 196 208 194 211 188 218 181 224 178 227 178 228 177 399 177 399 158 228 158 227 157 224 157 218 154 210 145 208 141 208 138 207 137 207 127 210 121 210 119 212 117 212 116 214 115 214 114 216 112 217 112 217 111 219 109 220 109 220 108 222 106 223 106 224 104 226 103 227 101 229 100 230 98 232 97 233 95 235 94 236 92 238 91 239 89 241 88 242 86 244 85 316 13Z"/></svg><div class="eyebrow">Infraestrutura de IA</div></div>
+        <h1>Infraestrutura de IA para empresas que desenvolvem em escala.</h1>
+        <div class="bot">
+          <div class="wm" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220"><path fill-rule="evenodd" fill="currentColor" d="M539 73 539 192 564 192 564 73ZM630 70 629 71 624 71 623 72 620 72 619 73 614 74 604 79 600 82 590 93 585 102 585 104 582 110 581 117 580 118 580 124 579 125 579 140 580 141 581 152 582 153 584 161 592 175 601 184 613 191 615 191 622 194 627 194 628 195 647 195 648 194 656 193 666 189 672 185 682 175 688 164 688 162 690 158 690 155 691 154 691 150 665 150 663 158 660 163 655 168 645 173 629 173 622 170 619 168 612 160 608 152 608 149 606 144 606 122 607 121 607 117 608 116 609 111 612 105 617 99 627 93 630 93 631 92 643 92 644 93 650 94 656 98 662 105 666 115 691 115 691 111 690 110 689 103 683 91 680 87 671 79 664 75 662 75 659 73 652 72 651 71 645 71 644 70ZM504 78 495 73 493 73 489 71 484 71 483 70 471 70 470 71 465 71 464 72 459 73 450 78 446 81 439 89 438 88 438 73 413 73 413 192 439 192 439 118 440 117 441 111 446 102 453 96 461 93 475 93 482 96 489 103 491 106 491 108 493 112 493 192 519 192 519 109 518 108 518 103 517 102 517 99 516 98 515 93 510 84ZM325 71 324 72 321 72 320 73 317 73 314 75 312 75 303 80 292 90 286 99 281 112 280 120 279 121 279 144 280 145 280 149 281 150 282 157 287 168 291 174 301 184 311 190 313 190 319 193 328 194 329 195 349 195 350 194 358 193 359 192 364 191 376 184 389 170 394 160 394 158 396 154 396 151 397 150 397 146 398 145 398 134 399 132 398 131 398 120 397 119 397 115 395 111 395 108 390 97 386 91 373 79 363 74 361 74 357 72 353 72 352 71 347 71 346 70 332 70 331 71ZM332 92 345 92 346 93 350 93 358 97 366 106 371 118 371 123 372 124 372 142 371 143 371 147 370 148 369 154 366 160 357 169 347 173 330 173 322 170 312 161 308 153 307 147 306 146 306 141 305 140 305 125 306 124 306 119 307 118 307 115 309 112 309 110 311 106 318 98 325 94 331 93ZM547 27 546 28 544 28 538 34 537 39 536 40 536 44 539 51 543 55 548 57 555 57 560 55 564 51 567 44 566 36 559 28 557 28 556 27ZM0 192 29 192 31 188 32 183 34 180 35 175 37 172 38 167 40 164 41 159 43 156 43 154 45 152 118 152 121 157 122 162 124 165 124 167 126 170 127 175 129 178 130 183 132 186 132 188 134 192 188 192 197 180 199 176 205 169 207 165 210 162 215 154 217 153 223 160 225 164 228 167 245 192 275 192 265 177 262 174 260 170 257 167 255 163 252 160 250 156 247 153 245 149 242 146 240 142 237 139 235 135 232 132 232 130 237 124 239 120 242 117 244 113 247 110 249 106 252 103 254 99 257 96 259 92 262 89 264 85 273 73 244 73 238 80 236 84 233 87 231 91 228 94 226 98 217 110 190 73 160 73 202 131 194 143 191 146 189 150 186 153 184 157 173 171 171 175 168 178 163 186 161 187 159 184 159 182 153 169 152 164 150 161 150 159 144 146 143 141 141 138 141 136 135 123 134 118 132 115 132 113 126 100 125 95 123 92 123 90 121 87 121 85 115 72 114 67 112 64 112 62 110 59 110 57 108 54 108 52 106 49 105 44 103 41 103 39 101 36 101 34 99 31 98 27 65 27 63 31 63 33 61 36 61 38 59 41 56 51 54 54 54 56 52 59 52 61 50 64 49 69 47 72 47 74 41 87 40 92 38 95 38 97 36 100 36 102 30 115 29 120 27 123 27 125 21 138 20 143 18 146 18 148 12 161 11 166 9 169 9 171 3 184 2 189ZM81 55 83 56 84 61 86 64 86 66 89 72 90 77 92 80 93 85 95 88 95 90 97 93 101 106 103 109 104 114 106 117 107 122 109 125 109 127 108 128 55 128 54 127 55 122 57 119 58 114 60 111 61 106 63 103 64 98 66 95 67 90 69 87 70 82 72 79 73 74 75 71 76 66ZM937 0 863 74 862 74 858 78 848 83 839 84 838 85 833 85 832 84 826 84 816 80 809 75 771 37 763 45 763 46 795 78 797 83 797 90 795 95 792 99 786 103 783 103 782 104 739 104 739 115 782 115 783 116 788 117 796 126 796 128 797 129 797 136 793 144 763 174 771 182 809 144 816 139 827 135 833 135 834 134 844 135 845 136 848 136 851 138 853 138 855 140 858 141 936 219 937 219 945 211 877 143 874 137 874 128 877 122 883 117 888 116 889 115 999 115 999 104 889 104 888 103 883 102 877 97 874 91 874 82 877 76 945 8Z"/></svg></div>
+          <div>
+            <p class="lede">A Axonic desenvolve o <b>Dandori</b>, a plataforma que coordena múltiplos agentes de IA no desenvolvimento de software. <b>Cada agente no seu espaço, todos com o mesmo contexto</b>, entregando como um único time.</p>
+            <div class="ctas">
+              <a class="btn btn-dark" href="#contato">Agendar diagnóstico <span class="arr">→</span></a>
+              <a class="btn btn-glass glass" href="dandori.html">Conhecer o Dandori</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="trust">
+      <span class="glass">Clientes em produção</span><span class="glass">Modelos privados</span><span class="glass">Seu código não treina terceiros</span><span class="glass">Implantação em semanas</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="manifesto">
+  <div class="wrap mani">
+    <div class="reveal">
+      <div class="eyebrow">Manifesto</div>
+      <h2>Processos autônomos, <span>decisões consistentes.</span></h2>
+      <div class="body">
+        <p>Todo time de engenharia já testou agentes de IA. Cada desenvolvedor com o seu assistente, cada agente com o seu contexto. A produtividade individual sobe. A do time, nem sempre.</p>
+        <p><b>A Axonic existe para resolver a camada que falta: a coordenação.</b> Ciência de dados e engenharia aplicadas para que dezenas de agentes trabalhem no mesmo produto sem conflito, sem retrabalho e sem abandonar o padrão da sua arquitetura.</p>
+        <p>No corpo humano, o axônio leva o impulso elétrico do neurônio até o músculo que age. Na sua engenharia, a Axonic faz o mesmo: conduz a decisão até o código entregue.</p>
+      </div>
+    </div>
+    <div class="neuron mesh alt reveal" id="neuron">
+      <canvas id="axon" aria-hidden="true"></canvas>
+      <div class="tagx glass"><b>Axônio</b>O canal que conduz o impulso do neurônio sem ruído, em alta velocidade.</div>
+      <div class="morph glass" role="group" aria-label="Origem do nome">
+        <span class="tok">AXON</span><span class="op">impulso</span><span class="def">Condução de sinal sem ruído, redes vivas, velocidade.</span>
+        <span class="tok">-IC</span><span class="op">precisão</span><span class="def">O sufixo da ciência exata: quantic, cybernetic, kinetic.</span>
+        <span class="tok">AXONIC</span><span class="op">=</span><span class="def">A ciência da conexão entre dado e decisão.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="people">
+      <div class="person intro glass reveal">
+        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 336"><path fill-rule="evenodd" fill="currentColor" d="M303 0 302 0 302 1 300 3 299 3 299 4 297 6 296 6 295 8 293 9 292 11 290 12 289 14 287 15 286 17 284 18 283 20 281 21 280 23 278 24 277 26 275 27 184 118 176 122 174 124 172 124 166 127 162 127 161 128 158 128 157 129 151 129 150 130 147 130 146 129 139 129 138 128 135 128 134 127 129 127 127 125 125 125 122 123 120 123 118 121 117 121 115 119 112 118 109 115 108 115 50 57 49 57 37 69 37 70 85 118 85 119 87 121 87 123 88 124 88 128 89 129 89 136 88 137 88 141 86 145 79 153 78 153 73 157 69 157 68 158 0 158 0 177 68 177 69 178 73 178 78 182 79 182 83 186 83 187 86 190 88 194 88 198 89 199 89 206 88 207 88 211 87 212 87 214 85 216 85 217 37 265 37 266 49 278 50 278 108 220 109 220 112 217 115 216 118 213 122 211 124 211 129 208 133 208 134 207 138 207 139 206 144 206 145 205 157 206 158 207 166 208 172 211 174 211 176 213 184 217 275 308 276 308 277 310 279 311 280 313 282 314 283 316 285 317 286 319 288 320 289 322 291 323 292 325 294 326 295 328 297 329 299 331 299 332 300 332 302 334 302 335 303 335 316 322 244 250 243 250 242 248 240 247 239 245 237 244 236 242 234 241 233 239 231 238 230 236 228 235 227 233 225 232 224 230 222 229 220 227 220 226 219 226 217 224 217 223 216 223 214 221 214 220 210 216 210 214 208 212 208 209 207 208 207 197 208 196 208 194 211 188 218 181 224 178 227 178 228 177 399 177 399 158 228 158 227 157 224 157 218 154 210 145 208 141 208 138 207 137 207 127 210 121 210 119 212 117 212 116 214 115 214 114 216 112 217 112 217 111 219 109 220 109 220 108 222 106 223 106 224 104 226 103 227 101 229 100 230 98 232 97 233 95 235 94 236 92 238 91 239 89 241 88 242 86 244 85 316 13Z"/></svg>
+        <div>
+          <h3>Ecossistema de IA para quem exige precisão.</h3>
+          <p style="margin-top:14px">Feito para empresas com grandes times de engenharia, vários produtos em paralelo e código que não pode quebrar.</p>
+        </div>
+      </div>
+      <div class="person mesh spec reveal"><img src="img/ax-cut-glasses.webp" alt="Retrato de um executivo de tecnologia sorrindo" loading="lazy"><div class="lbl glass"><b>CTO</b><span>Produtividade de engenharia que escala sem multiplicar o caos.</span></div></div>
+      <div class="person mesh alt spec reveal"><img src="img/ax-cut-vest.webp" alt="Retrato de um líder de engenharia sorrindo" loading="lazy"><div class="lbl glass"><b>VP e Head de Engenharia</b><span>Agentes em paralelo, sem pisar no código uns dos outros.</span></div></div>
+      <div class="person mesh spec reveal"><img src="img/ax-cut-beard.webp" alt="Retrato de um arquiteto de software sorrindo" loading="lazy"><div class="lbl glass"><b>Arquitetura e Segurança</b><span>Padrões aplicados por todos os agentes, com modelos privados.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Coordenação, não mais um assistente.</h2>
+      <p>O mercado já tem ferramentas que ajudam um desenvolvedor por vez. A Axonic constrói a camada que faz todos os agentes trabalharem como um time.</p>
+    </div>
+    <div class="vs-wrap">
+      <div class="vs-img reveal"><img src="img/ax-exec.webp" alt="Executivo de braços cruzados em escritório moderno" loading="lazy"><div class="pill sm"><span class="bub glass-dark"><svg aria-hidden="true" focusable="false" style="color:#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 336"><path fill-rule="evenodd" fill="currentColor" d="M303 0 302 0 302 1 300 3 299 3 299 4 297 6 296 6 295 8 293 9 292 11 290 12 289 14 287 15 286 17 284 18 283 20 281 21 280 23 278 24 277 26 275 27 184 118 176 122 174 124 172 124 166 127 162 127 161 128 158 128 157 129 151 129 150 130 147 130 146 129 139 129 138 128 135 128 134 127 129 127 127 125 125 125 122 123 120 123 118 121 117 121 115 119 112 118 109 115 108 115 50 57 49 57 37 69 37 70 85 118 85 119 87 121 87 123 88 124 88 128 89 129 89 136 88 137 88 141 86 145 79 153 78 153 73 157 69 157 68 158 0 158 0 177 68 177 69 178 73 178 78 182 79 182 83 186 83 187 86 190 88 194 88 198 89 199 89 206 88 207 88 211 87 212 87 214 85 216 85 217 37 265 37 266 49 278 50 278 108 220 109 220 112 217 115 216 118 213 122 211 124 211 129 208 133 208 134 207 138 207 139 206 144 206 145 205 157 206 158 207 166 208 172 211 174 211 176 213 184 217 275 308 276 308 277 310 279 311 280 313 282 314 283 316 285 317 286 319 288 320 289 322 291 323 292 325 294 326 295 328 297 329 299 331 299 332 300 332 302 334 302 335 303 335 316 322 244 250 243 250 242 248 240 247 239 245 237 244 236 242 234 241 233 239 231 238 230 236 228 235 227 233 225 232 224 230 222 229 220 227 220 226 219 226 217 224 217 223 216 223 214 221 214 220 210 216 210 214 208 212 208 209 207 208 207 197 208 196 208 194 211 188 218 181 224 178 227 178 228 177 399 177 399 158 228 158 227 157 224 157 218 154 210 145 208 141 208 138 207 137 207 127 210 121 210 119 212 117 212 116 214 115 214 114 216 112 217 112 217 111 219 109 220 109 220 108 222 106 223 106 224 104 226 103 227 101 229 100 230 98 232 97 233 95 235 94 236 92 238 91 239 89 241 88 242 86 244 85 316 13Z"/></svg></span><span class="lab glass-dark">Feito para operar em escala</span></div></div>
+      <div class="versus reveal">
+        <div class="vs-row head"><span>Dimensão</span><span>A Axonic é</span><span>A Axonic não é</span></div>
+        <div class="vs-row"><span class="k">Tecnologia</span><span>Orquestração de múltiplos agentes de IA em todo o ciclo de desenvolvimento.</span><span class="no">Mais um assistente de código isolado.</span></div>
+        <div class="vs-row"><span class="k">Método</span><span>Planejamento e contexto definidos antes da primeira linha de código.</span><span class="no">Prompt solto e correção depois.</span></div>
+        <div class="vs-row"><span class="k">Entrega</span><span>Projeto de implantação com prazo, seguido de operação contínua.</span><span class="no">Licença entregue sem acompanhamento.</span></div>
+        <div class="vs-row"><span class="k">Para quem</span><span>Empresas com grandes times de engenharia e vários produtos em paralelo.</span><span class="no">Uso individual ou projetos pequenos.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dd dd-murm" id="dandori">
+  <div class="wrap">
+    <div class="dd-top">
+      <a class="dlogo" href="dandori.html" aria-label="Dandori"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 155"><path fill-rule="evenodd" fill="currentColor" d="M975 41 975 153 997 153 997 41ZM959 41 899 41 899 153 921 153 921 76 917 68 911 64 912 63 958 63 959 62ZM808 42 798 46 789 52 782 59 774 73 774 75 772 79 772 82 771 83 771 89 770 90 770 104 771 105 771 111 772 112 772 115 773 116 774 121 776 124 776 126 778 128 781 134 790 143 802 150 804 150 808 152 811 152 812 153 816 153 817 154 834 154 835 153 840 153 841 152 847 151 850 149 852 149 856 147 863 142 870 135 878 121 878 119 880 115 880 111 881 110 881 103 882 102 882 92 881 91 881 84 880 83 879 76 874 65 869 58 860 50 849 44 847 44 843 42 840 42 839 41 835 41 834 40 818 40 817 41ZM822 59 830 59 831 60 835 60 845 65 854 75 856 79 856 81 858 85 858 89 859 90 859 104 858 105 858 109 854 119 845 129 838 133 831 134 830 135 822 135 821 134 817 134 807 129 798 119 794 109 794 104 793 103 793 91 794 90 794 85 798 75 807 65 814 61 821 60ZM523 41 523 153 545 153 545 151 546 150 546 142 545 141 545 139 546 138 546 130 545 129 545 127 546 126 546 118 545 117 545 114 546 113 546 106 545 105 545 102 546 101 546 86 547 85 547 82 550 74 559 64 562 62 564 62 568 60 574 60 575 59 577 60 583 60 590 63 597 70 601 79 601 82 602 83 602 153 625 153 625 83 624 82 624 76 623 75 623 71 622 70 621 65 614 53 607 47 597 42 589 41 588 40 573 40 572 41 568 41 567 42 562 43 556 46 546 55 544 52 544 47 543 46 543 42 542 41ZM415 49 407 57 406 60 404 62 404 64 402 68 402 71 401 72 401 75 423 75 423 73 426 67 432 62 438 59 442 59 443 58 453 58 454 59 458 59 464 62 470 68 473 76 473 85 472 86 436 86 435 87 429 87 428 88 424 88 423 89 418 90 408 96 402 103 398 114 398 129 399 130 400 135 403 140 412 148 424 153 429 153 430 154 446 154 447 153 454 152 465 146 474 136 478 147 483 151 490 152 491 153 507 153 507 133 500 133 498 132 495 128 495 74 494 73 493 65 491 62 491 60 487 54 482 49 471 43 465 42 464 41 459 41 458 40 440 40 439 41 434 41 433 42 430 42 429 43 424 44ZM421 125 421 114 422 112 428 106 432 104 435 104 436 103 472 103 473 104 472 116 469 123 463 130 454 135 452 135 451 136 445 136 444 137 434 136 427 133 423 129ZM983 0 978 2 975 5 973 9 973 18 974 20 981 26 990 26 994 24 997 21 999 16 999 10 998 9 998 7 993 2 989 0ZM753 0 731 0 731 55 730 56 722 48 713 43 711 43 707 41 703 41 702 40 687 40 686 41 678 42 675 44 673 44 663 50 652 62 646 74 646 77 644 81 644 86 643 87 643 107 644 108 645 117 651 131 656 138 665 146 675 151 681 152 682 153 686 153 687 154 702 154 703 153 710 152 718 148 730 137 732 140 732 145 733 146 733 151 734 153 753 153ZM695 59 707 60 717 65 726 75 728 79 728 81 730 85 730 89 731 90 731 104 730 105 729 113 725 121 716 130 711 133 705 134 704 135 693 135 692 134 689 134 684 132 677 127 670 118 667 110 667 107 666 106 666 89 667 88 668 81 672 73 681 64 687 61 694 60ZM261 0 261 153 315 153 316 152 324 152 325 151 329 151 330 150 333 150 334 149 342 147 350 143 360 136 370 125 379 109 379 107 382 100 383 90 384 89 384 63 383 62 383 57 382 56 382 53 381 52 379 44 373 32 368 25 359 16 352 11 337 4 334 4 333 3 326 2 325 1 319 1 318 0ZM286 21 316 21 317 22 322 22 323 23 326 23 327 24 332 25 336 28 339 29 350 40 356 51 356 53 358 57 358 61 359 62 359 67 360 68 360 84 359 85 359 91 358 92 356 102 350 113 340 123 329 129 326 129 321 131 316 131 315 132 286 132 285 131 285 22ZM0 153 100 153 101 152 109 151 116 148 122 144 130 136 198 45 144 45 100 8 91 3 89 3 85 1 81 1 80 0 18 0 23 5 27 11 32 16 36 22 41 27 45 33 50 38 54 44 59 49 63 55 68 60 72 66 99 98 98 99 63 99 62 100 52 101 49 103 47 103 43 105 29 118 29 119Z"/></svg></a>
+      <span class="tag">O produto da Axonic</span>
+    </div>
+    <div class="stage">
+      <canvas id="murm" role="img" aria-label="Animação: 2.113 pontos voam como um bando de estorninhos e pousam formando a palavra japonesa 段取り, dandori"></canvas>
+      <div class="stage-ui">
+        <div class="seg" role="group" aria-label="Estado do bando">
+          <button type="button" id="mFly" aria-pressed="false">Murmuração</button>
+          <button type="button" id="mForm" aria-pressed="true">Formação</button>
+        </div>
+        <span class="hint"><b>2.113</b> agentes · <span class="h-mouse">passe o cursor e o bando reage como um só</span><span class="h-touch">deslize o dedo sobre o bando e ele reage como um só</span></span>
+      </div>
+    </div>
+    <div class="dd-intro">
+      <div class="reveal">
+        <h2 class="big">Múltiplos agentes, uma operação coordenada.</h2>
+        <div class="dd-cta-row"><a class="btn btn-ink" href="dandori.html">Conhecer o Dandori <span class="arr">→</span></a></div>
+      </div>
+      <div class="reveal">
+        <p><b>段取り, dandori,</b> é a filosofia japonesa de preparação do Sistema Toyota de Produção: planejar e sequenciar cada etapa antes da ação. O Dandori aplica esse método ao desenvolvimento de software com IA. A demanda é planejada, dividida e distribuída antes da primeira linha de código. Depois, os agentes executam como um bando de estorninhos: cada um no seu espaço, todos na mesma direção.</p>
+        <div class="stat80"><span class="n">80%</span><p>do sucesso de uma entrega é definido pela qualidade da preparação, antes da execução começar.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="como">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Do diagnóstico à operação contínua.</h2>
+      <p>Implantação como projeto, com escopo e prazo definidos. Operação e evolução como serviço contínuo, ao lado do seu time.</p>
+    </div>
+    <div class="how-ph reveal">
+      <img src="img/ax-team.webp" alt="Equipe reunida em mesa de trabalho durante apresentação" loading="lazy">
+      <div class="steps glass-dark">
+        <div class="step"><span class="n">01</span><h3>Diagnóstico</h3><p>Mapeamos como seu time desenvolve hoje e onde a coordenação falha.</p></div>
+        <div class="step"><span class="n">02</span><h3>Plano</h3><p>Definimos os fluxos, os agentes e os padrões que entram primeiro.</p></div>
+        <div class="step"><span class="n">03</span><h3>Implantação</h3><p>Projeto com prazo fechado e o primeiro fluxo em produção em semanas.</p></div>
+        <div class="step"><span class="n">04</span><h3>Operação</h3><p>Acompanhamento contínuo dos agentes em produção.</p></div>
+        <div class="step"><span class="n">05</span><h3>Evolução</h3><p>Novos fluxos, times e produtos entram em ciclos recorrentes.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secb mesh reveal" id="seguranca">
+  <div class="wrap sec-grid">
+    <div>
+      <div class="eyebrow">Segurança e controle</div>
+      <h2>Seu código continua seu.</h2>
+      <p class="lede">Empresas que desenvolvem em escala não podem expor código nem propriedade intelectual. O Dandori foi desenhado com essa premissa desde o primeiro módulo.</p>
+      <div class="shield">
+        <div class="sh glass spec"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg></span><span class="t">Modelos privados</span><p>Os agentes operam com modelos privados, dentro do ambiente acordado com a sua empresa.</p></div>
+        <div class="sh glass spec"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 1.5 13.5 4v4c0 3.2-2.4 5.6-5.5 6.5C4.9 13.6 2.5 11.2 2.5 8V4z"/></svg></span><span class="t">Sem treino de terceiros</span><p>Seu código e seus dados não são usados para treinar modelos de terceiros.</p></div>
+        <div class="sh glass spec"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.5 1.5"/></svg></span><span class="t">Implantação em semanas</span><p>Do diagnóstico ao primeiro fluxo em produção em semanas, não em trimestres.</p></div>
+        <div class="sh glass spec"><span class="ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 8a5.5 5.5 0 0 1 9.6-3.6M13.5 8a5.5 5.5 0 0 1-9.6 3.6"/><path d="M12.5 1.8v2.8H9.7M3.5 14.2v-2.8h2.8"/></svg></span><span class="t">Operação contínua</span><p>Um time da Axonic acompanha os agentes em produção depois da implantação.</p></div>
+      </div>
+    </div>
+    <div class="sec-ph"><img src="img/ax-glasscard.webp" alt="Mão segurando um cartão de vidro com o símbolo da Axonic sobre fundo degradê" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:0">
+  <div class="cta reveal" id="contato">
+    <div class="cta-copy">
+      <div class="eyebrow">Diagnóstico de engenharia</div>
+      <h2>Descubra onde seu time perde velocidade.</h2>
+      <p class="lede">Em uma sessão com a sua liderança de engenharia, mapeamos um fluxo real de desenvolvimento e mostramos o que muda com agentes coordenados.</p>
+      <ol>
+        <li><span><b>Conversa de 45 minutos</b> com um especialista da Axonic.</span></li>
+        <li><span><b>Mapa do fluxo</b> com gargalos, esperas e retrabalho identificados.</span></li>
+        <li><span><b>Proposta de implantação</b> com escopo, prazo e indicadores de sucesso.</span></li>
+      </ol>
+    </div>
+    <div class="cta-vis">
+      <img src="img/ax-tablet.webp" alt="Executiva segurando um tablet em escritório" loading="lazy">
+      <form class="diag" id="diag" novalidate>
+        <div class="f"><label for="fn">Nome</label><input id="fn" name="nome" autocomplete="name" required></div>
+        <div class="f"><label for="fc">Cargo</label><input id="fc" name="cargo" autocomplete="organization-title" required></div>
+        <div class="f"><label for="fe">Empresa</label><input id="fe" name="empresa" autocomplete="organization" required></div>
+        <div class="f"><label for="fm">E-mail corporativo</label><input id="fm" name="email" type="email" autocomplete="email" required></div>
+        <div class="f full"><label for="fs">Tamanho do time de engenharia</label>
+          <select id="fs" name="time" required>
+            <option value="">Selecione</option>
+            <option>Até 50 pessoas</option>
+            <option>50 a 200 pessoas</option>
+            <option>200 a 1.000 pessoas</option>
+            <option>Mais de 1.000 pessoas</option>
+          </select></div>
+        <div class="f full"><label for="fg">Como seu time usa agentes de IA hoje?</label><textarea id="fg" name="uso" placeholder="Ex.: cada desenvolvedor usa um assistente, sem padrão comum entre os times"></textarea></div>
+        <label class="optin" for="fo"><input type="checkbox" id="fo" name="optin"> Aceito receber conteúdos e comunicações da Axonic. Posso cancelar quando quiser.</label>
+        <button class="btn" type="submit">Solicitar diagnóstico <span class="arr">→</span></button>
+        <p class="note">Resposta em até 1 dia útil. Usamos seus dados para responder a esta solicitação. Veja a <a href="privacidade.html">Política de Privacidade</a>.</p>
+        <div class="ok" id="ok" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div><span class="logo"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220"><path fill-rule="evenodd" fill="currentColor" d="M539 73 539 192 564 192 564 73ZM630 70 629 71 624 71 623 72 620 72 619 73 614 74 604 79 600 82 590 93 585 102 585 104 582 110 581 117 580 118 580 124 579 125 579 140 580 141 581 152 582 153 584 161 592 175 601 184 613 191 615 191 622 194 627 194 628 195 647 195 648 194 656 193 666 189 672 185 682 175 688 164 688 162 690 158 690 155 691 154 691 150 665 150 663 158 660 163 655 168 645 173 629 173 622 170 619 168 612 160 608 152 608 149 606 144 606 122 607 121 607 117 608 116 609 111 612 105 617 99 627 93 630 93 631 92 643 92 644 93 650 94 656 98 662 105 666 115 691 115 691 111 690 110 689 103 683 91 680 87 671 79 664 75 662 75 659 73 652 72 651 71 645 71 644 70ZM504 78 495 73 493 73 489 71 484 71 483 70 471 70 470 71 465 71 464 72 459 73 450 78 446 81 439 89 438 88 438 73 413 73 413 192 439 192 439 118 440 117 441 111 446 102 453 96 461 93 475 93 482 96 489 103 491 106 491 108 493 112 493 192 519 192 519 109 518 108 518 103 517 102 517 99 516 98 515 93 510 84ZM325 71 324 72 321 72 320 73 317 73 314 75 312 75 303 80 292 90 286 99 281 112 280 120 279 121 279 144 280 145 280 149 281 150 282 157 287 168 291 174 301 184 311 190 313 190 319 193 328 194 329 195 349 195 350 194 358 193 359 192 364 191 376 184 389 170 394 160 394 158 396 154 396 151 397 150 397 146 398 145 398 134 399 132 398 131 398 120 397 119 397 115 395 111 395 108 390 97 386 91 373 79 363 74 361 74 357 72 353 72 352 71 347 71 346 70 332 70 331 71ZM332 92 345 92 346 93 350 93 358 97 366 106 371 118 371 123 372 124 372 142 371 143 371 147 370 148 369 154 366 160 357 169 347 173 330 173 322 170 312 161 308 153 307 147 306 146 306 141 305 140 305 125 306 124 306 119 307 118 307 115 309 112 309 110 311 106 318 98 325 94 331 93ZM547 27 546 28 544 28 538 34 537 39 536 40 536 44 539 51 543 55 548 57 555 57 560 55 564 51 567 44 566 36 559 28 557 28 556 27ZM0 192 29 192 31 188 32 183 34 180 35 175 37 172 38 167 40 164 41 159 43 156 43 154 45 152 118 152 121 157 122 162 124 165 124 167 126 170 127 175 129 178 130 183 132 186 132 188 134 192 188 192 197 180 199 176 205 169 207 165 210 162 215 154 217 153 223 160 225 164 228 167 245 192 275 192 265 177 262 174 260 170 257 167 255 163 252 160 250 156 247 153 245 149 242 146 240 142 237 139 235 135 232 132 232 130 237 124 239 120 242 117 244 113 247 110 249 106 252 103 254 99 257 96 259 92 262 89 264 85 273 73 244 73 238 80 236 84 233 87 231 91 228 94 226 98 217 110 190 73 160 73 202 131 194 143 191 146 189 150 186 153 184 157 173 171 171 175 168 178 163 186 161 187 159 184 159 182 153 169 152 164 150 161 150 159 144 146 143 141 141 138 141 136 135 123 134 118 132 115 132 113 126 100 125 95 123 92 123 90 121 87 121 85 115 72 114 67 112 64 112 62 110 59 110 57 108 54 108 52 106 49 105 44 103 41 103 39 101 36 101 34 99 31 98 27 65 27 63 31 63 33 61 36 61 38 59 41 56 51 54 54 54 56 52 59 52 61 50 64 49 69 47 72 47 74 41 87 40 92 38 95 38 97 36 100 36 102 30 115 29 120 27 123 27 125 21 138 20 143 18 146 18 148 12 161 11 166 9 169 9 171 3 184 2 189ZM81 55 83 56 84 61 86 64 86 66 89 72 90 77 92 80 93 85 95 88 95 90 97 93 101 106 103 109 104 114 106 117 107 122 109 125 109 127 108 128 55 128 54 127 55 122 57 119 58 114 60 111 61 106 63 103 64 98 66 95 67 90 69 87 70 82 72 79 73 74 75 71 76 66ZM937 0 863 74 862 74 858 78 848 83 839 84 838 85 833 85 832 84 826 84 816 80 809 75 771 37 763 45 763 46 795 78 797 83 797 90 795 95 792 99 786 103 783 103 782 104 739 104 739 115 782 115 783 116 788 117 796 126 796 128 797 129 797 136 793 144 763 174 771 182 809 144 816 139 827 135 833 135 834 134 844 135 845 136 848 136 851 138 853 138 855 140 858 141 936 219 937 219 945 211 877 143 874 137 874 128 877 122 883 117 888 116 889 115 999 115 999 104 889 104 888 103 883 102 877 97 874 91 874 82 877 76 945 8Z"/></svg></span><p>Infraestrutura de inteligência artificial para empresas que desenvolvem software em escala.</p></div>
+      <div><h4>Produto</h4><ul><li><a href="dandori.html">Dandori</a></li><li><a href="dandori.html#modulos">Plataforma</a></li><li><a href="dandori.html#modelo">Como contratar</a></li><li><a href="dandori.html#faq">Perguntas frequentes</a></li></ul></div>
+      <div><h4>Empresa</h4><ul><li><a href="#manifesto">Manifesto</a></li><li><a href="#como">Como trabalhamos</a></li><li><a href="#seguranca">Segurança</a></li><li><a href="#contato">Contato executivo</a></li></ul></div>
+      <div><h4>Contato</h4><ul><li>contato@axonictec.com</li><li>axonictec.com</li><li>@axonic</li></ul></div>
+    </div>
+    <div class="fb"><span><b>AXONIC</b> é uma empresa do Grupo VEXO.</span><span><a href="privacidade.html">Política de Privacidade</a> · © 2026 Axonic. Todos os direitos reservados.</span></div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DPR = Math.min(window.devicePixelRatio||1,2);
+const AXSYM = new Path2D("M303 0 302 0 302 1 300 3 299 3 299 4 297 6 296 6 295 8 293 9 292 11 290 12 289 14 287 15 286 17 284 18 283 20 281 21 280 23 278 24 277 26 275 27 184 118 176 122 174 124 172 124 166 127 162 127 161 128 158 128 157 129 151 129 150 130 147 130 146 129 139 129 138 128 135 128 134 127 129 127 127 125 125 125 122 123 120 123 118 121 117 121 115 119 112 118 109 115 108 115 50 57 49 57 37 69 37 70 85 118 85 119 87 121 87 123 88 124 88 128 89 129 89 136 88 137 88 141 86 145 79 153 78 153 73 157 69 157 68 158 0 158 0 177 68 177 69 178 73 178 78 182 79 182 83 186 83 187 86 190 88 194 88 198 89 199 89 206 88 207 88 211 87 212 87 214 85 216 85 217 37 265 37 266 49 278 50 278 108 220 109 220 112 217 115 216 118 213 122 211 124 211 129 208 133 208 134 207 138 207 139 206 144 206 145 205 157 206 158 207 166 208 172 211 174 211 176 213 184 217 275 308 276 308 277 310 279 311 280 313 282 314 283 316 285 317 286 319 288 320 289 322 291 323 292 325 294 326 295 328 297 329 299 331 299 332 300 332 302 334 302 335 303 335 316 322 244 250 243 250 242 248 240 247 239 245 237 244 236 242 234 241 233 239 231 238 230 236 228 235 227 233 225 232 224 230 222 229 220 227 220 226 219 226 217 224 217 223 216 223 214 221 214 220 210 216 210 214 208 212 208 209 207 208 207 197 208 196 208 194 211 188 218 181 224 178 227 178 228 177 399 177 399 158 228 158 227 157 224 157 218 154 210 145 208 141 208 138 207 137 207 127 210 121 210 119 212 117 212 116 214 115 214 114 216 112 217 112 217 111 219 109 220 109 220 108 222 106 223 106 224 104 226 103 227 101 229 100 230 98 232 97 233 95 235 94 236 92 238 91 239 89 241 88 242 86 244 85 316 13Z"); const AXW=400, AXH=336;
+const KJ = [[237.3,13.8],[190.3,13.8],[178.5,13.8],[166.8,13.8],[155.0,13.8],[143.3,13.8],[131.5,13.8],[249.1,13.8],[260.8,13.8],[272.6,13.8],[284.3,13.8],[296.1,13.8],[307.8,13.8],[319.6,13.8],[331.3,13.8],[343.1,13.8],[354.9,13.8],[366.6,13.8],[378.4,13.8],[484.2,13.8],[495.9,13.8],[507.7,13.8],[519.4,13.8],[531.2,13.8],[542.9,13.8],[554.7,13.8],[566.4,13.8],[578.2,13.8],[589.9,13.8],[601.7,13.8],[613.4,13.8],[625.2,13.8],[637.0,13.8],[648.7,13.8],[660.5,13.8],[672.2,13.8],[684.0,13.8],[695.7,13.8],[707.5,13.8],[719.2,13.8],[731.0,13.8],[237.3,25.4],[202.0,25.4],[190.3,25.4],[178.5,25.4],[166.8,25.4],[155.0,25.4],[143.3,25.4],[131.5,25.4],[119.8,25.4],[108.0,25.4],[96.3,25.4],[84.5,25.4],[249.1,25.4],[260.8,25.4],[272.6,25.4],[284.3,25.4],[296.1,25.4],[307.8,25.4],[319.6,25.4],[331.3,25.4],[343.1,25.4],[354.9,25.4],[366.6,25.4],[378.4,25.4],[390.1,25.4],[484.2,25.4],[495.9,25.4],[507.7,25.4],[519.4,25.4],[531.2,25.4],[542.9,25.4],[554.7,25.4],[566.4,25.4],[578.2,25.4],[589.9,25.4],[601.7,25.4],[613.4,25.4],[625.2,25.4],[637.0,25.4],[648.7,25.4],[660.5,25.4],[672.2,25.4],[684.0,25.4],[695.7,25.4],[707.5,25.4],[719.2,25.4],[731.0,25.4],[983.6,25.4],[995.4,25.4],[1007.1,25.4],[1018.9,25.4],[237.3,37.0],[202.0,37.0],[190.3,37.0],[178.5,37.0],[166.8,37.0],[155.0,37.0],[143.3,37.0],[131.5,37.0],[119.8,37.0],[108.0,37.0],[96.3,37.0],[84.5,37.0],[72.7,37.0],[61.0,37.0],[49.2,37.0],[37.5,37.0],[249.1,37.0],[260.8,37.0],[272.6,37.0],[284.3,37.0],[296.1,37.0],[307.8,37.0],[319.6,37.0],[331.3,37.0],[343.1,37.0],[354.9,37.0],[366.6,37.0],[378.4,37.0],[390.1,37.0],[484.2,37.0],[495.9,37.0],[507.7,37.0],[519.4,37.0],[531.2,37.0],[542.9,37.0],[554.7,37.0],[566.4,37.0],[578.2,37.0],[589.9,37.0],[601.7,37.0],[613.4,37.0],[625.2,37.0],[637.0,37.0],[648.7,37.0],[660.5,37.0],[672.2,37.0],[684.0,37.0],[695.7,37.0],[707.5,37.0],[719.2,37.0],[731.0,37.0],[983.6,37.0],[995.4,37.0],[1007.1,37.0],[1018.9,37.0],[237.3,48.7],[190.3,48.7],[178.5,48.7],[166.8,48.7],[155.0,48.7],[143.3,48.7],[131.5,48.7],[119.8,48.7],[108.0,48.7],[96.3,48.7],[84.5,48.7],[72.7,48.7],[61.0,48.7],[49.2,48.7],[37.5,48.7],[249.1,48.7],[260.8,48.7],[272.6,48.7],[284.3,48.7],[296.1,48.7],[307.8,48.7],[319.6,48.7],[331.3,48.7],[343.1,48.7],[354.9,48.7],[366.6,48.7],[378.4,48.7],[390.1,48.7],[484.2,48.7],[495.9,48.7],[507.7,48.7],[519.4,48.7],[531.2,48.7],[542.9,48.7],[554.7,48.7],[566.4,48.7],[578.2,48.7],[589.9,48.7],[601.7,48.7],[613.4,48.7],[625.2,48.7],[637.0,48.7],[648.7,48.7],[660.5,48.7],[672.2,48.7],[684.0,48.7],[695.7,48.7],[707.5,48.7],[719.2,48.7],[731.0,48.7],[983.6,48.7],[995.4,48.7],[1007.1,48.7],[1018.9,48.7],[1136.4,48.7],[1148.2,48.7],[1159.9,48.7],[1171.7,48.7],[1183.4,48.7],[237.3,60.3],[143.3,60.3],[131.5,60.3],[119.8,60.3],[108.0,60.3],[96.3,60.3],[84.5,60.3],[72.7,60.3],[61.0,60.3],[49.2,60.3],[37.5,60.3],[249.1,60.3],[260.8,60.3],[272.6,60.3],[284.3,60.3],[343.1,60.3],[354.9,60.3],[366.6,60.3],[378.4,60.3],[390.1,60.3],[519.4,60.3],[531.2,60.3],[542.9,60.3],[554.7,60.3],[566.4,60.3],[648.7,60.3],[660.5,60.3],[672.2,60.3],[684.0,60.3],[719.2,60.3],[731.0,60.3],[742.7,60.3],[754.5,60.3],[766.3,60.3],[778.0,60.3],[789.8,60.3],[801.5,60.3],[813.3,60.3],[825.0,60.3],[836.8,60.3],[848.5,60.3],[860.3,60.3],[872.0,60.3],[883.8,60.3],[983.6,60.3],[995.4,60.3],[1007.1,60.3],[1018.9,60.3],[1112.9,60.3],[1124.7,60.3],[1136.4,60.3],[1148.2,60.3],[1159.9,60.3],[1171.7,60.3],[1183.4,60.3],[1195.2,60.3],[1207.0,60.3],[237.3,71.9],[96.3,71.9],[84.5,71.9],[72.7,71.9],[61.0,71.9],[49.2,71.9],[37.5,71.9],[249.1,71.9],[260.8,71.9],[272.6,71.9],[284.3,71.9],[343.1,71.9],[354.9,71.9],[366.6,71.9],[378.4,71.9],[390.1,71.9],[519.4,71.9],[531.2,71.9],[542.9,71.9],[554.7,71.9],[566.4,71.9],[648.7,71.9],[660.5,71.9],[672.2,71.9],[684.0,71.9],[719.2,71.9],[731.0,71.9],[742.7,71.9],[754.5,71.9],[766.3,71.9],[778.0,71.9],[789.8,71.9],[801.5,71.9],[813.3,71.9],[825.0,71.9],[836.8,71.9],[848.5,71.9],[860.3,71.9],[872.0,71.9],[883.8,71.9],[895.6,71.9],[907.3,71.9],[983.6,71.9],[995.4,71.9],[1007.1,71.9],[1018.9,71.9],[1089.4,71.9],[1101.2,71.9],[1112.9,71.9],[1124.7,71.9],[1136.4,71.9],[1148.2,71.9],[1159.9,71.9],[1171.7,71.9],[1183.4,71.9],[1195.2,71.9],[1207.0,71.9],[1218.7,71.9],[237.3,83.5],[84.5,83.5],[72.7,83.5],[61.0,83.5],[49.2,83.5],[37.5,83.5],[249.1,83.5],[260.8,83.5],[272.6,83.5],[343.1,83.5],[354.9,83.5],[366.6,83.5],[378.4,83.5],[390.1,83.5],[519.4,83.5],[531.2,83.5],[542.9,83.5],[554.7,83.5],[566.4,83.5],[648.7,83.5],[660.5,83.5],[672.2,83.5],[684.0,83.5],[719.2,83.5],[731.0,83.5],[742.7,83.5],[754.5,83.5],[766.3,83.5],[778.0,83.5],[789.8,83.5],[801.5,83.5],[813.3,83.5],[825.0,83.5],[836.8,83.5],[848.5,83.5],[860.3,83.5],[872.0,83.5],[883.8,83.5],[895.6,83.5],[907.3,83.5],[919.1,83.5],[983.6,83.5],[971.9,25.4],[971.9,37.0],[971.9,48.7],[971.9,60.3],[971.9,71.9],[971.9,83.5],[995.4,83.5],[1007.1,83.5],[1018.9,83.5],[1077.7,83.5],[1089.4,83.5],[1101.2,83.5],[1112.9,83.5],[1124.7,83.5],[1136.4,83.5],[1148.2,83.5],[1159.9,83.5],[1171.7,83.5],[1183.4,83.5],[1195.2,83.5],[1207.0,83.5],[1218.7,83.5],[1230.5,83.5],[237.3,95.1],[84.5,95.1],[72.7,95.1],[61.0,95.1],[49.2,95.1],[37.5,95.1],[249.1,95.1],[260.8,95.1],[272.6,95.1],[343.1,95.1],[354.9,95.1],[366.6,95.1],[378.4,95.1],[390.1,95.1],[425.4,95.1],[437.1,95.1],[448.9,95.1],[519.4,95.1],[531.2,95.1],[542.9,95.1],[554.7,95.1],[566.4,95.1],[648.7,95.1],[660.5,95.1],[672.2,95.1],[684.0,95.1],[719.2,95.1],[731.0,95.1],[742.7,95.1],[754.5,95.1],[766.3,95.1],[778.0,95.1],[789.8,95.1],[801.5,95.1],[813.3,95.1],[825.0,95.1],[836.8,95.1],[848.5,95.1],[860.3,95.1],[872.0,95.1],[883.8,95.1],[895.6,95.1],[907.3,95.1],[919.1,95.1],[971.9,95.1],[983.6,95.1],[995.4,95.1],[1007.1,95.1],[1018.9,95.1],[1065.9,95.1],[1077.7,95.1],[1089.4,95.1],[1101.2,95.1],[1112.9,95.1],[1124.7,95.1],[1136.4,95.1],[1148.2,95.1],[1159.9,95.1],[1171.7,95.1],[1183.4,95.1],[1195.2,95.1],[1207.0,95.1],[1218.7,95.1],[1230.5,95.1],[237.3,106.7],[225.6,106.7],[84.5,106.7],[72.7,106.7],[61.0,106.7],[49.2,106.7],[37.5,106.7],[249.1,106.7],[260.8,106.7],[272.6,106.7],[343.1,106.7],[354.9,106.7],[366.6,106.7],[378.4,106.7],[390.1,106.7],[425.4,106.7],[437.1,106.7],[448.9,106.7],[460.6,106.7],[519.4,106.7],[531.2,106.7],[542.9,106.7],[554.7,106.7],[566.4,106.7],[648.7,106.7],[660.5,106.7],[672.2,106.7],[684.0,106.7],[719.2,106.7],[731.0,106.7],[742.7,106.7],[754.5,106.7],[766.3,106.7],[778.0,106.7],[789.8,106.7],[801.5,106.7],[813.3,106.7],[825.0,106.7],[836.8,106.7],[848.5,106.7],[860.3,106.7],[872.0,106.7],[883.8,106.7],[895.6,106.7],[907.3,106.7],[919.1,106.7],[971.9,106.7],[983.6,106.7],[995.4,106.7],[1007.1,106.7],[1018.9,106.7],[1054.1,106.7],[1065.9,106.7],[1077.7,106.7],[1089.4,106.7],[1101.2,106.7],[1112.9,106.7],[1183.4,106.7],[1195.2,106.7],[1207.0,106.7],[1218.7,106.7],[1230.5,106.7],[1242.2,106.7],[237.3,118.3],[225.6,118.3],[166.8,118.3],[155.0,118.3],[143.3,118.3],[131.5,118.3],[119.8,118.3],[108.0,118.3],[96.3,118.3],[84.5,118.3],[72.7,118.3],[61.0,118.3],[49.2,118.3],[37.5,118.3],[249.1,118.3],[260.8,118.3],[272.6,118.3],[343.1,118.3],[354.9,118.3],[366.6,118.3],[378.4,118.3],[390.1,118.3],[425.4,118.3],[437.1,118.3],[448.9,118.3],[460.6,118.3],[519.4,118.3],[531.2,118.3],[542.9,118.3],[554.7,118.3],[566.4,118.3],[578.2,118.3],[589.9,118.3],[601.7,118.3],[613.4,118.3],[625.2,118.3],[637.0,118.3],[648.7,118.3],[660.5,118.3],[672.2,118.3],[684.0,118.3],[872.0,118.3],[883.8,118.3],[895.6,118.3],[907.3,118.3],[919.1,118.3],[971.9,118.3],[983.6,118.3],[995.4,118.3],[1007.1,118.3],[1018.9,118.3],[1042.4,118.3],[1054.1,118.3],[1065.9,118.3],[1077.7,118.3],[1089.4,118.3],[1101.2,118.3],[1195.2,118.3],[1207.0,118.3],[1218.7,118.3],[1230.5,118.3],[1242.2,118.3],[237.3,129.9],[225.6,129.9],[166.8,129.9],[155.0,129.9],[143.3,129.9],[131.5,129.9],[119.8,129.9],[108.0,129.9],[96.3,129.9],[84.5,129.9],[72.7,129.9],[61.0,129.9],[49.2,129.9],[37.5,129.9],[249.1,129.9],[260.8,129.9],[272.6,129.9],[343.1,129.9],[354.9,129.9],[366.6,129.9],[378.4,129.9],[390.1,129.9],[425.4,129.9],[437.1,129.9],[448.9,129.9],[460.6,129.9],[519.4,129.9],[531.2,129.9],[542.9,129.9],[554.7,129.9],[566.4,129.9],[578.2,129.9],[589.9,129.9],[601.7,129.9],[613.4,129.9],[625.2,129.9],[637.0,129.9],[648.7,129.9],[660.5,129.9],[672.2,129.9],[684.0,129.9],[731.0,129.9],[742.7,129.9],[754.5,129.9],[766.3,129.9],[778.0,129.9],[872.0,129.9],[883.8,129.9],[895.6,129.9],[907.3,129.9],[919.1,129.9],[971.9,129.9],[983.6,129.9],[995.4,129.9],[1007.1,129.9],[1018.9,129.9],[1042.4,129.9],[1054.1,129.9],[1065.9,129.9],[1077.7,129.9],[1089.4,129.9],[1195.2,129.9],[1207.0,129.9],[1218.7,129.9],[1230.5,129.9],[1242.2,129.9],[237.3,141.5],[225.6,141.5],[213.8,141.5],[166.8,141.5],[155.0,141.5],[143.3,141.5],[131.5,141.5],[119.8,141.5],[108.0,141.5],[96.3,141.5],[84.5,141.5],[72.7,141.5],[61.0,141.5],[49.2,141.5],[37.5,141.5],[249.1,141.5],[260.8,141.5],[343.1,141.5],[354.9,141.5],[366.6,141.5],[378.4,141.5],[390.1,141.5],[401.9,141.5],[413.6,141.5],[425.4,141.5],[437.1,141.5],[448.9,141.5],[460.6,141.5],[519.4,141.5],[531.2,141.5],[542.9,141.5],[554.7,141.5],[566.4,141.5],[578.2,141.5],[589.9,141.5],[601.7,141.5],[613.4,141.5],[625.2,141.5],[637.0,141.5],[648.7,141.5],[660.5,141.5],[672.2,141.5],[684.0,141.5],[731.0,141.5],[742.7,141.5],[754.5,141.5],[766.3,141.5],[778.0,141.5],[872.0,141.5],[883.8,141.5],[895.6,141.5],[907.3,141.5],[919.1,141.5],[971.9,141.5],[983.6,141.5],[995.4,141.5],[1007.1,141.5],[1018.9,141.5],[1030.6,141.5],[1042.4,141.5],[1054.1,141.5],[1065.9,141.5],[1077.7,141.5],[1207.0,141.5],[1218.7,141.5],[1230.5,141.5],[1242.2,141.5],[1254.0,141.5],[237.3,153.1],[225.6,153.1],[213.8,153.1],[202.0,153.1],[166.8,153.1],[155.0,153.1],[143.3,153.1],[131.5,153.1],[119.8,153.1],[108.0,153.1],[96.3,153.1],[84.5,153.1],[72.7,153.1],[61.0,153.1],[49.2,153.1],[37.5,153.1],[249.1,153.1],[260.8,153.1],[343.1,153.1],[354.9,153.1],[366.6,153.1],[378.4,153.1],[390.1,153.1],[401.9,153.1],[413.6,153.1],[425.4,153.1],[437.1,153.1],[448.9,153.1],[519.4,153.1],[531.2,153.1],[542.9,153.1],[554.7,153.1],[566.4,153.1],[578.2,153.1],[589.9,153.1],[601.7,153.1],[613.4,153.1],[625.2,153.1],[637.0,153.1],[648.7,153.1],[660.5,153.1],[672.2,153.1],[684.0,153.1],[742.7,153.1],[754.5,153.1],[766.3,153.1],[778.0,153.1],[860.3,153.1],[872.0,153.1],[883.8,153.1],[895.6,153.1],[907.3,153.1],[971.9,153.1],[983.6,153.1],[995.4,153.1],[1007.1,153.1],[1018.9,153.1],[1030.6,153.1],[1042.4,153.1],[1054.1,153.1],[1065.9,153.1],[1207.0,153.1],[1218.7,153.1],[1230.5,153.1],[1242.2,153.1],[1254.0,153.1],[237.3,164.7],[225.6,164.7],[213.8,164.7],[202.0,164.7],[190.3,164.7],[84.5,164.7],[72.7,164.7],[61.0,164.7],[49.2,164.7],[37.5,164.7],[249.1,164.7],[343.1,164.7],[354.9,164.7],[366.6,164.7],[378.4,164.7],[390.1,164.7],[401.9,164.7],[413.6,164.7],[425.4,164.7],[437.1,164.7],[448.9,164.7],[519.4,164.7],[531.2,164.7],[542.9,164.7],[554.7,164.7],[566.4,164.7],[637.0,164.7],[648.7,164.7],[660.5,164.7],[672.2,164.7],[684.0,164.7],[742.7,164.7],[754.5,164.7],[766.3,164.7],[778.0,164.7],[860.3,164.7],[872.0,164.7],[883.8,164.7],[895.6,164.7],[907.3,164.7],[971.9,164.7],[983.6,164.7],[995.4,164.7],[1007.1,164.7],[1018.9,164.7],[1030.6,164.7],[1042.4,164.7],[1054.1,164.7],[1065.9,164.7],[1207.0,164.7],[1218.7,164.7],[1230.5,164.7],[1242.2,164.7],[1254.0,164.7],[237.3,176.3],[225.6,176.3],[213.8,176.3],[202.0,176.3],[84.5,176.3],[72.7,176.3],[61.0,176.3],[49.2,176.3],[37.5,176.3],[354.9,176.3],[366.6,176.3],[378.4,176.3],[390.1,176.3],[401.9,176.3],[413.6,176.3],[425.4,176.3],[437.1,176.3],[519.4,176.3],[531.2,176.3],[542.9,176.3],[554.7,176.3],[566.4,176.3],[648.7,176.3],[660.5,176.3],[672.2,176.3],[684.0,176.3],[742.7,176.3],[754.5,176.3],[766.3,176.3],[778.0,176.3],[789.8,176.3],[860.3,176.3],[872.0,176.3],[883.8,176.3],[895.6,176.3],[907.3,176.3],[971.9,176.3],[983.6,176.3],[995.4,176.3],[1007.1,176.3],[1018.9,176.3],[1030.6,176.3],[1042.4,176.3],[1054.1,176.3],[1207.0,176.3],[1218.7,176.3],[1230.5,176.3],[1242.2,176.3],[1254.0,176.3],[225.6,187.9],[213.8,187.9],[84.5,187.9],[72.7,187.9],[61.0,187.9],[49.2,187.9],[37.5,187.9],[519.4,187.9],[531.2,187.9],[542.9,187.9],[554.7,187.9],[566.4,187.9],[648.7,187.9],[660.5,187.9],[672.2,187.9],[684.0,187.9],[742.7,187.9],[754.5,187.9],[766.3,187.9],[778.0,187.9],[789.8,187.9],[860.3,187.9],[872.0,187.9],[883.8,187.9],[895.6,187.9],[907.3,187.9],[971.9,187.9],[983.6,187.9],[995.4,187.9],[1007.1,187.9],[1018.9,187.9],[1030.6,187.9],[1042.4,187.9],[1054.1,187.9],[1207.0,187.9],[1218.7,187.9],[1230.5,187.9],[1242.2,187.9],[1254.0,187.9],[84.5,199.6],[72.7,199.6],[61.0,199.6],[49.2,199.6],[37.5,199.6],[519.4,199.6],[531.2,199.6],[542.9,199.6],[554.7,199.6],[566.4,199.6],[648.7,199.6],[660.5,199.6],[672.2,199.6],[684.0,199.6],[754.5,199.6],[766.3,199.6],[778.0,199.6],[789.8,199.6],[860.3,199.6],[872.0,199.6],[883.8,199.6],[895.6,199.6],[907.3,199.6],[971.9,199.6],[983.6,199.6],[995.4,199.6],[1007.1,199.6],[1018.9,199.6],[1030.6,199.6],[1042.4,199.6],[1207.0,199.6],[1218.7,199.6],[1230.5,199.6],[1242.2,199.6],[1254.0,199.6],[84.5,211.2],[72.7,211.2],[61.0,211.2],[49.2,211.2],[37.5,211.2],[519.4,211.2],[531.2,211.2],[542.9,211.2],[554.7,211.2],[566.4,211.2],[648.7,211.2],[660.5,211.2],[672.2,211.2],[684.0,211.2],[754.5,211.2],[766.3,211.2],[778.0,211.2],[789.8,211.2],[801.5,211.2],[848.5,211.2],[860.3,211.2],[872.0,211.2],[883.8,211.2],[895.6,211.2],[971.9,211.2],[983.6,211.2],[995.4,211.2],[1007.1,211.2],[1018.9,211.2],[1030.6,211.2],[1042.4,211.2],[1207.0,211.2],[1218.7,211.2],[1230.5,211.2],[1242.2,211.2],[1254.0,211.2],[237.3,222.8],[225.6,222.8],[213.8,222.8],[202.0,222.8],[166.8,222.8],[155.0,222.8],[143.3,222.8],[131.5,222.8],[119.8,222.8],[108.0,222.8],[96.3,222.8],[84.5,222.8],[72.7,222.8],[61.0,222.8],[49.2,222.8],[37.5,222.8],[249.1,222.8],[260.8,222.8],[272.6,222.8],[284.3,222.8],[296.1,222.8],[307.8,222.8],[319.6,222.8],[331.3,222.8],[343.1,222.8],[354.9,222.8],[366.6,222.8],[378.4,222.8],[390.1,222.8],[401.9,222.8],[413.6,222.8],[519.4,222.8],[531.2,222.8],[542.9,222.8],[554.7,222.8],[566.4,222.8],[578.2,222.8],[589.9,222.8],[601.7,222.8],[613.4,222.8],[625.2,222.8],[637.0,222.8],[648.7,222.8],[660.5,222.8],[672.2,222.8],[684.0,222.8],[754.5,222.8],[766.3,222.8],[778.0,222.8],[789.8,222.8],[801.5,222.8],[848.5,222.8],[860.3,222.8],[872.0,222.8],[883.8,222.8],[895.6,222.8],[971.9,222.8],[983.6,222.8],[995.4,222.8],[1007.1,222.8],[1018.9,222.8],[1030.6,222.8],[1207.0,222.8],[1218.7,222.8],[1230.5,222.8],[1242.2,222.8],[1254.0,222.8],[237.3,234.4],[225.6,234.4],[213.8,234.4],[202.0,234.4],[166.8,234.4],[155.0,234.4],[143.3,234.4],[131.5,234.4],[119.8,234.4],[108.0,234.4],[96.3,234.4],[84.5,234.4],[72.7,234.4],[61.0,234.4],[49.2,234.4],[37.5,234.4],[249.1,234.4],[260.8,234.4],[272.6,234.4],[284.3,234.4],[296.1,234.4],[307.8,234.4],[319.6,234.4],[331.3,234.4],[343.1,234.4],[354.9,234.4],[366.6,234.4],[378.4,234.4],[390.1,234.4],[401.9,234.4],[413.6,234.4],[425.4,234.4],[519.4,234.4],[531.2,234.4],[542.9,234.4],[554.7,234.4],[566.4,234.4],[578.2,234.4],[589.9,234.4],[601.7,234.4],[613.4,234.4],[625.2,234.4],[637.0,234.4],[648.7,234.4],[660.5,234.4],[672.2,234.4],[684.0,234.4],[766.3,234.4],[778.0,234.4],[789.8,234.4],[801.5,234.4],[848.5,234.4],[860.3,234.4],[872.0,234.4],[883.8,234.4],[895.6,234.4],[971.9,234.4],[983.6,234.4],[995.4,234.4],[1007.1,234.4],[1018.9,234.4],[1030.6,234.4],[1207.0,234.4],[1218.7,234.4],[1230.5,234.4],[1242.2,234.4],[1254.0,234.4],[237.3,246.0],[225.6,246.0],[213.8,246.0],[202.0,246.0],[166.8,246.0],[155.0,246.0],[143.3,246.0],[131.5,246.0],[119.8,246.0],[108.0,246.0],[96.3,246.0],[84.5,246.0],[72.7,246.0],[61.0,246.0],[49.2,246.0],[37.5,246.0],[249.1,246.0],[260.8,246.0],[272.6,246.0],[284.3,246.0],[296.1,246.0],[307.8,246.0],[319.6,246.0],[331.3,246.0],[343.1,246.0],[354.9,246.0],[366.6,246.0],[378.4,246.0],[390.1,246.0],[401.9,246.0],[413.6,246.0],[425.4,246.0],[519.4,246.0],[531.2,246.0],[542.9,246.0],[554.7,246.0],[566.4,246.0],[578.2,246.0],[589.9,246.0],[601.7,246.0],[613.4,246.0],[625.2,246.0],[637.0,246.0],[648.7,246.0],[660.5,246.0],[672.2,246.0],[684.0,246.0],[766.3,246.0],[778.0,246.0],[789.8,246.0],[801.5,246.0],[813.3,246.0],[836.8,246.0],[848.5,246.0],[860.3,246.0],[872.0,246.0],[883.8,246.0],[971.9,246.0],[983.6,246.0],[995.4,246.0],[1007.1,246.0],[1018.9,246.0],[1030.6,246.0],[1207.0,246.0],[1218.7,246.0],[1230.5,246.0],[1242.2,246.0],[1254.0,246.0],[237.3,257.6],[225.6,257.6],[213.8,257.6],[202.0,257.6],[166.8,257.6],[155.0,257.6],[143.3,257.6],[131.5,257.6],[119.8,257.6],[108.0,257.6],[96.3,257.6],[84.5,257.6],[72.7,257.6],[61.0,257.6],[49.2,257.6],[37.5,257.6],[249.1,257.6],[260.8,257.6],[272.6,257.6],[284.3,257.6],[296.1,257.6],[307.8,257.6],[319.6,257.6],[331.3,257.6],[343.1,257.6],[354.9,257.6],[366.6,257.6],[378.4,257.6],[390.1,257.6],[401.9,257.6],[413.6,257.6],[425.4,257.6],[519.4,257.6],[531.2,257.6],[542.9,257.6],[554.7,257.6],[566.4,257.6],[578.2,257.6],[589.9,257.6],[601.7,257.6],[613.4,257.6],[625.2,257.6],[637.0,257.6],[648.7,257.6],[660.5,257.6],[672.2,257.6],[684.0,257.6],[766.3,257.6],[778.0,257.6],[789.8,257.6],[801.5,257.6],[813.3,257.6],[836.8,257.6],[848.5,257.6],[860.3,257.6],[872.0,257.6],[883.8,257.6],[971.9,257.6],[983.6,257.6],[995.4,257.6],[1007.1,257.6],[1018.9,257.6],[1030.6,257.6],[1207.0,257.6],[1218.7,257.6],[1230.5,257.6],[1242.2,257.6],[1254.0,257.6],[237.3,269.2],[225.6,269.2],[84.5,269.2],[72.7,269.2],[61.0,269.2],[49.2,269.2],[37.5,269.2],[249.1,269.2],[260.8,269.2],[378.4,269.2],[390.1,269.2],[401.9,269.2],[413.6,269.2],[425.4,269.2],[519.4,269.2],[531.2,269.2],[542.9,269.2],[554.7,269.2],[566.4,269.2],[578.2,269.2],[589.9,269.2],[601.7,269.2],[613.4,269.2],[625.2,269.2],[637.0,269.2],[648.7,269.2],[660.5,269.2],[672.2,269.2],[684.0,269.2],[778.0,269.2],[789.8,269.2],[801.5,269.2],[813.3,269.2],[825.0,269.2],[836.8,269.2],[848.5,269.2],[860.3,269.2],[872.0,269.2],[883.8,269.2],[971.9,269.2],[983.6,269.2],[995.4,269.2],[1007.1,269.2],[1018.9,269.2],[1207.0,269.2],[1218.7,269.2],[1230.5,269.2],[1242.2,269.2],[1254.0,269.2],[237.3,280.8],[225.6,280.8],[84.5,280.8],[72.7,280.8],[61.0,280.8],[49.2,280.8],[37.5,280.8],[249.1,280.8],[260.8,280.8],[272.6,280.8],[366.6,280.8],[378.4,280.8],[390.1,280.8],[401.9,280.8],[413.6,280.8],[519.4,280.8],[531.2,280.8],[542.9,280.8],[554.7,280.8],[566.4,280.8],[648.7,280.8],[660.5,280.8],[672.2,280.8],[684.0,280.8],[778.0,280.8],[789.8,280.8],[801.5,280.8],[813.3,280.8],[825.0,280.8],[836.8,280.8],[848.5,280.8],[860.3,280.8],[872.0,280.8],[971.9,280.8],[983.6,280.8],[995.4,280.8],[1007.1,280.8],[1018.9,280.8],[1207.0,280.8],[1218.7,280.8],[1230.5,280.8],[1242.2,280.8],[1254.0,280.8],[237.3,292.4],[84.5,292.4],[72.7,292.4],[61.0,292.4],[49.2,292.4],[37.5,292.4],[249.1,292.4],[260.8,292.4],[272.6,292.4],[354.9,292.4],[366.6,292.4],[378.4,292.4],[390.1,292.4],[401.9,292.4],[413.6,292.4],[519.4,292.4],[531.2,292.4],[542.9,292.4],[554.7,292.4],[566.4,292.4],[648.7,292.4],[660.5,292.4],[672.2,292.4],[684.0,292.4],[789.8,292.4],[801.5,292.4],[813.3,292.4],[825.0,292.4],[836.8,292.4],[848.5,292.4],[860.3,292.4],[872.0,292.4],[971.9,292.4],[983.6,292.4],[995.4,292.4],[1007.1,292.4],[1018.9,292.4],[1207.0,292.4],[1218.7,292.4],[1230.5,292.4],[1242.2,292.4],[1254.0,292.4],[237.3,304.0],[84.5,304.0],[72.7,304.0],[61.0,304.0],[49.2,304.0],[37.5,304.0],[249.1,304.0],[260.8,304.0],[272.6,304.0],[284.3,304.0],[354.9,304.0],[366.6,304.0],[378.4,304.0],[390.1,304.0],[401.9,304.0],[519.4,304.0],[531.2,304.0],[542.9,304.0],[554.7,304.0],[566.4,304.0],[648.7,304.0],[660.5,304.0],[672.2,304.0],[684.0,304.0],[789.8,304.0],[801.5,304.0],[813.3,304.0],[825.0,304.0],[836.8,304.0],[848.5,304.0],[860.3,304.0],[971.9,304.0],[983.6,304.0],[995.4,304.0],[1007.1,304.0],[1018.9,304.0],[1207.0,304.0],[1218.7,304.0],[1230.5,304.0],[1242.2,304.0],[1254.0,304.0],[190.3,315.6],[178.5,315.6],[166.8,315.6],[155.0,315.6],[84.5,315.6],[72.7,315.6],[61.0,315.6],[49.2,315.6],[37.5,315.6],[249.1,315.6],[260.8,315.6],[272.6,315.6],[284.3,315.6],[296.1,315.6],[343.1,315.6],[354.9,315.6],[366.6,315.6],[378.4,315.6],[390.1,315.6],[519.4,315.6],[531.2,315.6],[542.9,315.6],[554.7,315.6],[566.4,315.6],[648.7,315.6],[660.5,315.6],[672.2,315.6],[684.0,315.6],[789.8,315.6],[801.5,315.6],[813.3,315.6],[825.0,315.6],[836.8,315.6],[848.5,315.6],[860.3,315.6],[971.9,315.6],[983.6,315.6],[995.4,315.6],[1007.1,315.6],[1018.9,315.6],[1195.2,315.6],[1207.0,315.6],[1218.7,315.6],[1230.5,315.6],[1242.2,315.6],[190.3,327.2],[178.5,327.2],[166.8,327.2],[155.0,327.2],[143.3,327.2],[131.5,327.2],[119.8,327.2],[108.0,327.2],[96.3,327.2],[84.5,327.2],[72.7,327.2],[61.0,327.2],[49.2,327.2],[37.5,327.2],[249.1,327.2],[260.8,327.2],[272.6,327.2],[284.3,327.2],[296.1,327.2],[307.8,327.2],[331.3,327.2],[343.1,327.2],[354.9,327.2],[366.6,327.2],[378.4,327.2],[390.1,327.2],[519.4,327.2],[531.2,327.2],[542.9,327.2],[554.7,327.2],[566.4,327.2],[637.0,327.2],[648.7,327.2],[660.5,327.2],[672.2,327.2],[684.0,327.2],[801.5,327.2],[813.3,327.2],[825.0,327.2],[836.8,327.2],[848.5,327.2],[860.3,327.2],[971.9,327.2],[983.6,327.2],[995.4,327.2],[1007.1,327.2],[1018.9,327.2],[1195.2,327.2],[1207.0,327.2],[1218.7,327.2],[1230.5,327.2],[1242.2,327.2],[190.3,338.8],[178.5,338.8],[166.8,338.8],[155.0,338.8],[143.3,338.8],[131.5,338.8],[119.8,338.8],[108.0,338.8],[96.3,338.8],[84.5,338.8],[72.7,338.8],[61.0,338.8],[49.2,338.8],[37.5,338.8],[260.8,338.8],[272.6,338.8],[284.3,338.8],[296.1,338.8],[307.8,338.8],[319.6,338.8],[331.3,338.8],[343.1,338.8],[354.9,338.8],[366.6,338.8],[378.4,338.8],[519.4,338.8],[531.2,338.8],[542.9,338.8],[554.7,338.8],[566.4,338.8],[589.9,338.8],[601.7,338.8],[613.4,338.8],[625.2,338.8],[637.0,338.8],[648.7,338.8],[660.5,338.8],[672.2,338.8],[684.0,338.8],[801.5,338.8],[813.3,338.8],[825.0,338.8],[836.8,338.8],[848.5,338.8],[860.3,338.8],[1195.2,338.8],[1207.0,338.8],[1218.7,338.8],[1230.5,338.8],[1242.2,338.8],[190.3,350.4],[178.5,350.4],[166.8,350.4],[155.0,350.4],[143.3,350.4],[131.5,350.4],[119.8,350.4],[108.0,350.4],[96.3,350.4],[84.5,350.4],[72.7,350.4],[61.0,350.4],[49.2,350.4],[37.5,350.4],[25.7,350.4],[14.0,350.4],[2.2,350.4],[272.6,350.4],[284.3,350.4],[296.1,350.4],[307.8,350.4],[319.6,350.4],[331.3,350.4],[343.1,350.4],[354.9,350.4],[366.6,350.4],[519.4,350.4],[531.2,350.4],[542.9,350.4],[554.7,350.4],[566.4,350.4],[578.2,350.4],[589.9,350.4],[601.7,350.4],[613.4,350.4],[625.2,350.4],[637.0,350.4],[648.7,350.4],[660.5,350.4],[672.2,350.4],[684.0,350.4],[789.8,350.4],[801.5,350.4],[813.3,350.4],[825.0,350.4],[836.8,350.4],[848.5,350.4],[860.3,350.4],[872.0,350.4],[1183.4,350.4],[1195.2,350.4],[1207.0,350.4],[1218.7,350.4],[1230.5,350.4],[1242.2,350.4],[155.0,362.1],[143.3,362.1],[131.5,362.1],[119.8,362.1],[108.0,362.1],[96.3,362.1],[84.5,362.1],[72.7,362.1],[61.0,362.1],[49.2,362.1],[37.5,362.1],[25.7,362.1],[14.0,362.1],[2.2,362.1],[284.3,362.1],[296.1,362.1],[307.8,362.1],[319.6,362.1],[331.3,362.1],[343.1,362.1],[354.9,362.1],[484.2,362.1],[495.9,362.1],[507.7,362.1],[519.4,362.1],[531.2,362.1],[542.9,362.1],[554.7,362.1],[566.4,362.1],[578.2,362.1],[589.9,362.1],[601.7,362.1],[613.4,362.1],[625.2,362.1],[637.0,362.1],[648.7,362.1],[660.5,362.1],[672.2,362.1],[684.0,362.1],[778.0,362.1],[789.8,362.1],[801.5,362.1],[813.3,362.1],[825.0,362.1],[836.8,362.1],[848.5,362.1],[860.3,362.1],[872.0,362.1],[1183.4,362.1],[1195.2,362.1],[1207.0,362.1],[1218.7,362.1],[1230.5,362.1],[108.0,373.7],[96.3,373.7],[84.5,373.7],[72.7,373.7],[61.0,373.7],[49.2,373.7],[37.5,373.7],[25.7,373.7],[14.0,373.7],[2.2,373.7],[284.3,373.7],[296.1,373.7],[307.8,373.7],[319.6,373.7],[331.3,373.7],[343.1,373.7],[354.9,373.7],[484.2,373.7],[495.9,373.7],[507.7,373.7],[519.4,373.7],[531.2,373.7],[542.9,373.7],[554.7,373.7],[566.4,373.7],[578.2,373.7],[589.9,373.7],[601.7,373.7],[613.4,373.7],[625.2,373.7],[637.0,373.7],[648.7,373.7],[660.5,373.7],[672.2,373.7],[684.0,373.7],[778.0,373.7],[789.8,373.7],[801.5,373.7],[813.3,373.7],[825.0,373.7],[836.8,373.7],[848.5,373.7],[860.3,373.7],[872.0,373.7],[883.8,373.7],[1171.7,373.7],[1183.4,373.7],[1195.2,373.7],[1207.0,373.7],[1218.7,373.7],[1230.5,373.7],[84.5,385.3],[72.7,385.3],[61.0,385.3],[49.2,385.3],[37.5,385.3],[25.7,385.3],[14.0,385.3],[2.2,385.3],[260.8,385.3],[272.6,385.3],[284.3,385.3],[296.1,385.3],[307.8,385.3],[319.6,385.3],[331.3,385.3],[343.1,385.3],[354.9,385.3],[366.6,385.3],[484.2,385.3],[495.9,385.3],[507.7,385.3],[519.4,385.3],[531.2,385.3],[542.9,385.3],[554.7,385.3],[566.4,385.3],[578.2,385.3],[589.9,385.3],[601.7,385.3],[648.7,385.3],[660.5,385.3],[672.2,385.3],[684.0,385.3],[766.3,385.3],[778.0,385.3],[789.8,385.3],[801.5,385.3],[813.3,385.3],[825.0,385.3],[836.8,385.3],[848.5,385.3],[860.3,385.3],[872.0,385.3],[883.8,385.3],[895.6,385.3],[1159.9,385.3],[1171.7,385.3],[1183.4,385.3],[1195.2,385.3],[1207.0,385.3],[1218.7,385.3],[237.3,396.9],[84.5,396.9],[72.7,396.9],[61.0,396.9],[49.2,396.9],[37.5,396.9],[249.1,396.9],[260.8,396.9],[272.6,396.9],[284.3,396.9],[296.1,396.9],[307.8,396.9],[319.6,396.9],[331.3,396.9],[343.1,396.9],[354.9,396.9],[366.6,396.9],[378.4,396.9],[390.1,396.9],[495.9,396.9],[507.7,396.9],[519.4,396.9],[531.2,396.9],[542.9,396.9],[554.7,396.9],[648.7,396.9],[660.5,396.9],[672.2,396.9],[684.0,396.9],[754.5,396.9],[766.3,396.9],[778.0,396.9],[789.8,396.9],[801.5,396.9],[813.3,396.9],[848.5,396.9],[860.3,396.9],[872.0,396.9],[883.8,396.9],[895.6,396.9],[907.3,396.9],[1148.2,396.9],[1159.9,396.9],[1171.7,396.9],[1183.4,396.9],[1195.2,396.9],[1207.0,396.9],[1218.7,396.9],[237.3,408.5],[225.6,408.5],[84.5,408.5],[72.7,408.5],[61.0,408.5],[49.2,408.5],[37.5,408.5],[249.1,408.5],[260.8,408.5],[272.6,408.5],[284.3,408.5],[296.1,408.5],[307.8,408.5],[331.3,408.5],[343.1,408.5],[354.9,408.5],[366.6,408.5],[378.4,408.5],[390.1,408.5],[401.9,408.5],[413.6,408.5],[495.9,408.5],[507.7,408.5],[648.7,408.5],[660.5,408.5],[672.2,408.5],[684.0,408.5],[742.7,408.5],[754.5,408.5],[766.3,408.5],[778.0,408.5],[789.8,408.5],[801.5,408.5],[848.5,408.5],[860.3,408.5],[872.0,408.5],[883.8,408.5],[895.6,408.5],[907.3,408.5],[919.1,408.5],[1136.4,408.5],[1148.2,408.5],[1159.9,408.5],[1171.7,408.5],[1183.4,408.5],[1195.2,408.5],[1207.0,408.5],[237.3,420.1],[225.6,420.1],[213.8,420.1],[202.0,420.1],[190.3,420.1],[84.5,420.1],[72.7,420.1],[61.0,420.1],[49.2,420.1],[37.5,420.1],[249.1,420.1],[260.8,420.1],[272.6,420.1],[284.3,420.1],[343.1,420.1],[354.9,420.1],[366.6,420.1],[378.4,420.1],[390.1,420.1],[401.9,420.1],[413.6,420.1],[425.4,420.1],[648.7,420.1],[660.5,420.1],[672.2,420.1],[684.0,420.1],[731.0,420.1],[742.7,420.1],[754.5,420.1],[766.3,420.1],[778.0,420.1],[789.8,420.1],[860.3,420.1],[872.0,420.1],[883.8,420.1],[895.6,420.1],[907.3,420.1],[919.1,420.1],[930.8,420.1],[1112.9,420.1],[1124.7,420.1],[1136.4,420.1],[1148.2,420.1],[1159.9,420.1],[1171.7,420.1],[1183.4,420.1],[1195.2,420.1],[237.3,431.7],[225.6,431.7],[213.8,431.7],[202.0,431.7],[190.3,431.7],[178.5,431.7],[84.5,431.7],[72.7,431.7],[61.0,431.7],[49.2,431.7],[37.5,431.7],[249.1,431.7],[260.8,431.7],[272.6,431.7],[354.9,431.7],[366.6,431.7],[378.4,431.7],[390.1,431.7],[401.9,431.7],[413.6,431.7],[425.4,431.7],[437.1,431.7],[648.7,431.7],[660.5,431.7],[672.2,431.7],[684.0,431.7],[719.2,431.7],[731.0,431.7],[742.7,431.7],[754.5,431.7],[766.3,431.7],[778.0,431.7],[789.8,431.7],[872.0,431.7],[883.8,431.7],[895.6,431.7],[907.3,431.7],[919.1,431.7],[930.8,431.7],[942.6,431.7],[1089.4,431.7],[1101.2,431.7],[1112.9,431.7],[1124.7,431.7],[1136.4,431.7],[1148.2,431.7],[1159.9,431.7],[1171.7,431.7],[1183.4,431.7],[237.3,443.3],[225.6,443.3],[213.8,443.3],[202.0,443.3],[190.3,443.3],[178.5,443.3],[84.5,443.3],[72.7,443.3],[61.0,443.3],[49.2,443.3],[37.5,443.3],[249.1,443.3],[378.4,443.3],[390.1,443.3],[401.9,443.3],[413.6,443.3],[425.4,443.3],[437.1,443.3],[448.9,443.3],[648.7,443.3],[660.5,443.3],[672.2,443.3],[684.0,443.3],[695.7,443.3],[707.5,443.3],[719.2,443.3],[731.0,443.3],[742.7,443.3],[754.5,443.3],[766.3,443.3],[778.0,443.3],[883.8,443.3],[895.6,443.3],[907.3,443.3],[919.1,443.3],[930.8,443.3],[942.6,443.3],[1042.4,443.3],[1054.1,443.3],[1065.9,443.3],[1077.7,443.3],[1089.4,443.3],[1101.2,443.3],[1112.9,443.3],[1124.7,443.3],[1136.4,443.3],[1148.2,443.3],[1159.9,443.3],[1171.7,443.3],[237.3,454.9],[225.6,454.9],[213.8,454.9],[202.0,454.9],[190.3,454.9],[84.5,454.9],[72.7,454.9],[61.0,454.9],[49.2,454.9],[37.5,454.9],[390.1,454.9],[401.9,454.9],[413.6,454.9],[425.4,454.9],[437.1,454.9],[648.7,454.9],[660.5,454.9],[672.2,454.9],[684.0,454.9],[707.5,454.9],[719.2,454.9],[731.0,454.9],[742.7,454.9],[754.5,454.9],[766.3,454.9],[895.6,454.9],[907.3,454.9],[919.1,454.9],[930.8,454.9],[1042.4,454.9],[1054.1,454.9],[1065.9,454.9],[1077.7,454.9],[1089.4,454.9],[1101.2,454.9],[1112.9,454.9],[1124.7,454.9],[1136.4,454.9],[1148.2,454.9],[1159.9,454.9],[213.8,466.5],[202.0,466.5],[84.5,466.5],[72.7,466.5],[61.0,466.5],[49.2,466.5],[37.5,466.5],[413.6,466.5],[425.4,466.5],[648.7,466.5],[660.5,466.5],[672.2,466.5],[684.0,466.5],[719.2,466.5],[731.0,466.5],[742.7,466.5],[754.5,466.5],[895.6,466.5],[907.3,466.5],[919.1,466.5],[1054.1,466.5],[1042.4,466.5],[1065.9,466.5],[1077.7,466.5],[1089.4,466.5],[1101.2,466.5],[1112.9,466.5],[1124.7,466.5],[1136.4,466.5],[648.7,478.1],[660.5,478.1],[672.2,478.1],[684.0,478.1],[731.0,478.1],[742.7,478.1],[1054.1,478.1],[1065.9,478.1],[1077.7,478.1],[1089.4,478.1],[1101.2,478.1],[1112.9,478.1],[178.5,2.2],[166.8,2.2]];
+
+/* run a frame loop only while the element is on screen */
+function whenVisible(el, frame){
+  let on=false, raf=0;
+  const tick=t=>{frame(t); if(on && !RM) raf=requestAnimationFrame(tick);};
+  if(!('IntersectionObserver' in window)){on=true;raf=requestAnimationFrame(tick);return;}
+  new IntersectionObserver(es=>{const v=es[0].isIntersecting; if(v&&!on){on=true;raf=requestAnimationFrame(tick);} else if(!v){on=false;cancelAnimationFrame(raf);}},{rootMargin:'120px'}).observe(el);
+  frame(performance.now());
+}
+function fitCanvas(c){const r=c.getBoundingClientRect();c.width=Math.max(1,Math.round(r.width*DPR));c.height=Math.max(1,Math.round(r.height*DPR));const x=c.getContext('2d');x.setTransform(DPR,0,0,DPR,0,0);return [r.width,r.height,x];}
+
+/* ---------- Specular highlight that follows the pointer on glass ---------- */
+document.querySelectorAll('.spec').forEach(el=>el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px');}));
+
+/* ---------- Manifesto: the Axonic symbol as a firing neuron ---------- */
+(()=>{
+  const c=document.getElementById('axon'), box=document.getElementById('neuron');if(!c)return;
+  let W,H,x,br=[],pulses=[],mx=0,my=0,tx=0,ty=0;
+  function build(){[W,H,x]=fitCanvas(c);br=[];const L=Math.hypot(W,H);
+    [0,Math.PI,-Math.PI*.25,Math.PI*.25,Math.PI*.75,-Math.PI*.75].forEach(a=>{const b={a,len:L,sub:[]};
+      for(let k=0;k<3;k++)b.sub.push({at:.16+k*.18+Math.random()*.06,a:a+(Math.random()<.5?-1:1)*(.35+Math.random()*.4),len:L*(.1+Math.random()*.16)});br.push(b);});}
+  const pt=(b,t,ox,oy)=>[ox+Math.cos(b.a)*b.len*t,oy+Math.sin(b.a)*b.len*t];
+  function draw(){
+    tx+=(mx-tx)*.06;ty+=(my-ty)*.06;
+    const ox=W*.5+tx*24, oy=H*.38+ty*24;
+    x.clearRect(0,0,W,H);x.lineCap='round';
+    br.forEach(b=>{x.strokeStyle='rgba(18,18,18,.1)';x.lineWidth=2;x.beginPath();x.moveTo(ox,oy);x.lineTo(...pt(b,1,ox,oy));x.stroke();
+      b.sub.forEach(s=>{const [sx,sy]=pt(b,s.at,ox,oy);x.lineWidth=1;x.strokeStyle='rgba(18,18,18,.08)';x.beginPath();x.moveTo(sx,sy);x.lineTo(sx+Math.cos(s.a)*s.len,sy+Math.sin(s.a)*s.len);x.stroke();});});
+    for(let i=1;i<6;i++){x.strokeStyle=`rgba(18,18,18,${.06-i*.009})`;x.lineWidth=1;x.beginPath();x.arc(ox,oy,i*Math.min(W,H)*.11,0,7);x.stroke();}
+    if(!RM&&Math.random()<.1)pulses.push({b:br[(Math.random()*6)|0],t:.05,v:.003+Math.random()*.004});
+    pulses=pulses.filter(p=>p.t<1);
+    pulses.forEach(p=>{p.t+=p.v;for(let k=0;k<14;k++){const tt=p.t-k*.006;if(tt<0)break;const [qx,qy]=pt(p.b,tt,ox,oy);x.fillStyle=`rgba(18,18,18,${(1-k/14)*.6})`;x.beginPath();x.arc(qx,qy,3.2-k*.18,0,7);x.fill();}});
+    const sc=Math.min(W,H)*.34/AXW;x.save();x.translate(ox-AXW*sc*.306,oy-AXH*sc*.498);x.scale(sc,sc);x.fillStyle='#121212';x.fill(AXSYM,'evenodd');x.restore();
+  }
+  box.addEventListener('pointermove',e=>{const r=box.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5;});
+  addEventListener('resize',()=>{build();draw();});build();whenVisible(c,draw);
+})();
+
+/* ---------- Dandori: murmuration that lands on the official dotted 段取り ---------- */
+(()=>{
+  const c=document.getElementById('murm');if(!c)return;
+  const N=KJ.length, RW=1257, RH=481;
+  const px=new Float32Array(N),py=new Float32Array(N),vx=new Float32Array(N),vy=new Float32Array(N);
+  const tx=new Float32Array(N),ty=new Float32Array(N),asg=new Int32Array(N);
+  const cellOf=new Int32Array(N),order=new Int32Array(N);
+  let W,H,x,S,ox0,oy0,cols,rows,cellStart,CELL=26;
+  let mode='form', modeAt=performance.now(), auto=!RM, formP=1, t=0;
+  const cur={x:-1e4,y:-1e4,sx:-1e4,sy:-1e4,fx:0,fy:0,on:false};
+  for(let i=0;i<N;i++)asg[i]=i;
+
+  function layout(first){
+    const oS=S,oX=ox0,oY=oy0;[W,H,x]=fitCanvas(c);
+    S=Math.min(W*.92/RW,H*.74/RH);ox0=(W-RW*S)/2;oy0=(H-RH*S)/2;
+    for(let k=0;k<N;k++){tx[k]=ox0+KJ[k][0]*S;ty[k]=oy0+KJ[k][1]*S;}
+    if(first){for(let i=0;i<N;i++){px[i]=tx[asg[i]];py[i]=ty[asg[i]];}}
+    else if(oS){for(let i=0;i<N;i++){px[i]=ox0+(px[i]-oX)/oS*S;py[i]=oy0+(py[i]-oY)/oS*S;}}
+    CELL=Math.max(18,Math.min(30,W/40));cols=Math.ceil(W/CELL)+1;rows=Math.ceil(H/CELL)+1;cellStart=new Int32Array(cols*rows+1);
+  }
+  function setMode(m,user){
+    if(user)auto=false;
+    if(m===mode)return;mode=m;modeAt=performance.now();
+    bF.setAttribute('aria-pressed',m==='fly');bM.setAttribute('aria-pressed',m==='form');
+    if(m==='fly'){const a=Math.random()*6.283;for(let i=0;i<N;i++){vx[i]=Math.cos(a)*2.2+(Math.random()-.5)*2.4;vy[i]=Math.sin(a)*2.2-1.2+(Math.random()-.5)*2.4;}}
+    else{ // land in a sweep along the flock heading so the dots stream in instead of crossing
+      let mvx=0,mvy=0;for(let i=0;i<N;i++){mvx+=vx[i];mvy+=vy[i];}const m2=Math.hypot(mvx,mvy)||1;const ax=mvx/m2,ay=mvy/m2;
+      const ag=[...Array(N).keys()].sort((a,b)=>(px[a]*ax+py[a]*ay)-(px[b]*ax+py[b]*ay));
+      const tg=[...Array(N).keys()].sort((a,b)=>(tx[a]*ax+ty[a]*ay)-(tx[b]*ax+ty[b]*ay));
+      for(let r=0;r<N;r++)asg[ag[r]]=tg[r];
+    }
+    if(RM){if(m==='form'){for(let i=0;i<N;i++){px[i]=tx[asg[i]];py[i]=ty[asg[i]];}}else{for(let i=0;i<N;i++){const a=Math.random()*6.283,r=Math.sqrt(Math.random());px[i]=W*.5+Math.cos(a)*r*W*.3;py[i]=H*.5+Math.sin(a)*r*H*.28;}}draw();}
+  }
+  function grid(){
+    cellStart.fill(0);
+    for(let i=0;i<N;i++){let cx=(px[i]/CELL)|0,cy=(py[i]/CELL)|0;cx=cx<0?0:cx>=cols?cols-1:cx;cy=cy<0?0:cy>=rows?rows-1:cy;const k=cy*cols+cx;cellOf[i]=k;cellStart[k+1]++;}
+    for(let k=0;k<cols*rows;k++)cellStart[k+1]+=cellStart[k];
+    const fill=cellStart.slice();for(let i=0;i<N;i++)order[fill[cellOf[i]]++]=i;
+  }
+  // hard constraint: no two birds may touch (min distance = 2r + gap)
+  function separate(r){
+    const md=2*r+Math.max(.8,r*.5),md2=md*md;grid();
+    for(let pass=0;pass<5;pass++){if(pass)grid();
+      for(let i=0;i<N;i++){const ci=cellOf[i],cx=ci%cols,cy=(ci/cols)|0;
+        for(let gy=cy-1;gy<=cy+1;gy++){if(gy<0||gy>=rows)continue;for(let gx=cx-1;gx<=cx+1;gx++){if(gx<0||gx>=cols)continue;const k=gy*cols+gx;
+          for(let q=cellStart[k];q<cellStart[k+1];q++){const j=order[q];if(j<=i)continue;let dx=px[j]-px[i],dy=py[j]-py[i],d2=dx*dx+dy*dy;if(d2>=md2)continue;
+            if(d2<1e-6){dx=(Math.random()-.5)*.01;dy=(Math.random()-.5)*.01;d2=dx*dx+dy*dy;}
+            const d=Math.sqrt(d2),c=(md-d)/(2*d),ex=dx*c,ey=dy*c;px[i]-=ex;py[i]-=ey;px[j]+=ex;py[j]+=ey;if(mode==='fly'){vx[i]-=ex*.5;vy[i]-=ey*.5;vx[j]+=ex*.5;vy[j]+=ey*.5;}}}}}
+    }
+  }
+  function curR(){const rf=Math.max(1.05,2.22*S);return 1.35+(rf-1.35)*formP;}
+  function stepFly(){
+    t+=.01;
+    const vmax=Math.max(1.7,Math.min(3.4,W/360)),vmin=vmax*.6,R=CELL,R2=R*R,SEP=Math.max(9,R*.42),SEP2=SEP*SEP;
+    // a wandering anchor keeps the flock on stage while it folds and stretches
+    const axp=W*(.5+.2*Math.sin(t*.53)+.05*Math.sin(t*1.7)), ayp=H*(.5+.14*Math.sin(t*.71+1.3));
+    grid();
+    for(let i=0;i<N;i++){
+      const cx=cellOf[i]%cols,cy=(cellOf[i]/cols)|0;let n=0,ax=0,ay=0,cxs=0,cys=0,sx=0,sy=0;
+      for(let gy=cy-1;gy<=cy+1&&n<28;gy++){if(gy<0||gy>=rows)continue;for(let gx=cx-1;gx<=cx+1&&n<28;gx++){if(gx<0||gx>=cols)continue;const k=gy*cols+gx;
+        for(let q=cellStart[k];q<cellStart[k+1]&&n<28;q++){const j=order[q];if(j===i)continue;const dx=px[j]-px[i],dy=py[j]-py[i],d2=dx*dx+dy*dy;if(d2>R2)continue;
+          n++;ax+=vx[j];ay+=vy[j];cxs+=dx;cys+=dy;if(d2<SEP2){const f=1/(d2+.5);sx-=dx*f;sy-=dy*f;}}}}
+      let fx=0,fy=0;
+      if(n){fx+=(ax/n-vx[i])*.06+cxs/n*.007;fy+=(ay/n-vy[i])*.06+cys/n*.007;}
+      fx+=sx*3.2;fy+=sy*3.2;
+      const dxa=axp-px[i],dya=ayp-py[i];fx+=dxa*.00055;fy+=dya*.00055;
+      // gentle swirl gives the folding waves of a real murmuration
+      const sw=Math.sin(px[i]*.008+t*2.1)*Math.cos(py[i]*.01-t*1.3)*.07;fx+=-vy[i]*sw;fy+=vx[i]*sw;
+      // the cursor is a falcon: the flock splits around it
+      if(cur.on){const dx=px[i]-cur.x,dy=py[i]-cur.y,d=Math.hypot(dx,dy),PR=Math.min(150,W*.12);if(d<PR){const f=(1-d/PR)*1.4/(d+.01);fx+=dx*f;fy+=dy*f;}}
+      // soft walls
+      const m=30;if(px[i]<m)fx+=.08;if(px[i]>W-m)fx-=.08;if(py[i]<m)fy+=.08;if(py[i]>H-m)fy-=.08;
+      vx[i]+=fx;vy[i]+=fy;
+      const sp=Math.hypot(vx[i],vy[i])||1;if(sp>vmax){vx[i]*=vmax/sp;vy[i]*=vmax/sp;}else if(sp<vmin){vx[i]*=vmin/sp;vy[i]*=vmin/sp;}
+      px[i]+=vx[i];py[i]+=vy[i];
+    }
+  }
+  function stepForm(){
+    // cursor wave and drag, ported from the reference file
+    cur.sx+=(cur.x-cur.sx)*.3;cur.sy+=(cur.y-cur.sy)*.3;
+    const sig=105*S*1.4,push=62*S*1.4,maxT=32*S*1.4,fs=Math.hypot(cur.fx,cur.fy),flow=Math.min(1,fs/6)*24*S;
+    let landed=0;const vmax=Math.max(2,Math.min(5.5,W/240));
+    for(let i=0;i<N;i++){
+      const k=asg[i];let gx=tx[k],gy=ty[k];
+      if(cur.on){const dx=gx-cur.sx,dy=gy-cur.sy,d=Math.hypot(dx,dy);if(d<sig*3){const fo=Math.exp(-.5*(d/sig)**2),s=push*fo/Math.hypot(dx,dy,14*S);let ox=dx*s+(fs?cur.fx/fs*flow*fo:0),oy=dy*s+(fs?cur.fy/fs*flow*fo:0);const tr=Math.hypot(ox,oy);if(tr>maxT){ox*=maxT/tr;oy*=maxT/tr;}gx+=ox;gy+=oy;}}
+      const dx=gx-px[i],dy=gy-py[i],d=Math.hypot(dx,dy);
+      if(d>30){const sp=Math.min(vmax,d*.07);vx[i]+=(dx/d*sp-vx[i])*.09;vy[i]+=(dy/d*sp-vy[i])*.09;}
+      else{vx[i]+=dx*.1;vy[i]+=dy*.1;vx[i]*=.72;vy[i]*=.72;}
+      px[i]+=vx[i];py[i]+=vy[i];if(d<Math.max(2.5,S*4))landed++;
+    }
+    cur.fx*=.85;cur.fy*=.85;
+    return landed/N;
+  }
+  function draw(){
+    x.clearRect(0,0,W,H);
+    const r=curR();
+    x.fillStyle='#111111';x.beginPath();
+    for(let i=0;i<N;i++){x.moveTo(px[i]+r,py[i]);x.arc(px[i],py[i],r,0,6.2832);}
+    x.fill();
+  }
+  function frame(now){
+    if(auto){const el=now-modeAt;if(mode==='form'&&el>(modeAt===start?2600:7500))setMode('fly');else if(mode==='fly'&&el>9000)setMode('form');}
+    let p=0;if(mode==='fly'){stepFly();p=0;}else p=stepForm();
+    formP+=((mode==='form'?Math.min(1,p*1.2):0)-formP)*.08;
+    separate(curR());
+    draw();
+  }
+  const start=modeAt;
+  const bF=document.getElementById('mFly'),bM=document.getElementById('mForm');
+  bF.onclick=()=>setMode('fly',true);bM.onclick=()=>setMode('form',true);
+  c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();const nx=e.clientX-r.left,ny=e.clientY-r.top;if(cur.on){cur.fx+=(nx-cur.x)*.4;cur.fy+=(ny-cur.y)*.4;}else{cur.sx=nx;cur.sy=ny;}cur.x=nx;cur.y=ny;cur.on=true;});
+  c.addEventListener('pointerleave',()=>{cur.on=false;});
+  c.addEventListener('pointercancel',()=>{cur.on=false;});
+  c.addEventListener('pointerup',e=>{if(e.pointerType!=='mouse')cur.on=false;});
+  addEventListener('resize',()=>{layout(false);draw();});
+  layout(true);draw();whenVisible(c,frame);
+})();
+
+/* ---------- Pillar graphics (dotted style) ---------- */
+document.querySelectorAll('canvas[data-g]').forEach(c=>{
+  const g=c.dataset.g;let t=0,W,H,x;
+  const size=()=>{[W,H,x]=fitCanvas(c);};size();addEventListener('resize',()=>{size();draw();});
+  function draw(){t+=.025;x.clearRect(0,0,W,H);const cx=W/2,cy=H/2,s=Math.min(W,H),st=Math.max(5,s/44),r=st*.3;
+    x.fillStyle='#111111';
+    const dot=(a,b,o=1)=>{x.globalAlpha=o;x.beginPath();x.arc(a,b,r,0,7);x.fill();};
+    if(g==='sep'){const R=s*.3;
+      for(let k=0;k<3;k++){const rr=R-k*st,n=Math.round(6.283*rr/st);for(let q=0;q<n;q++){const a=q/n*6.283;dot(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr);}}
+      for(let i=-Math.floor(s*.44/st);i<=Math.floor(s*.44/st);i++){const v=i*st,av=Math.abs(v);if((av>s*.12&&av<R-3*st)||av>R+st*.5){for(let k=-1;k<=1;k++){dot(cx+v,cy+k*st);dot(cx+k*st,cy+v);}}}
+      const pr=s*.075*(1+.06*Math.sin(t*2));for(let yy=-pr;yy<=pr;yy+=st)for(let xx=-pr;xx<=pr;xx+=st)if(xx*xx+yy*yy<=pr*pr)dot(cx+xx,cy+yy);}
+    if(g==='ali'){const lanes=5,x0=W*.14,xb=W*.5,xt=W*.72,xe=W*.86,span=H*.5;
+      for(let l=0;l<lanes;l++){const y0=cy-span/2+l*span/(lanes-1);
+        for(let row=-.5;row<=.5;row+=1){
+          for(let p=x0;p<=(l===2?xe:xt);p+=st){let q;if(p<xb)q=y0;else if(p<xt){const u=(p-xb)/(xt-xb);q=y0+(cy-y0)*(u*u*(3-2*u));}else q=cy;
+            const ph=((p/W)*3-t*.6)%1;dot(p,q+row*st,.45+.55*Math.max(0,Math.cos(ph*6.283)));}}}
+      x.globalAlpha=1;}
+    if(g==='coe'){const R=s*.28,cr=s*.085;const pts=[[0,0]];for(let i=0;i<6;i++){const a=i*Math.PI/3+Math.PI/6;pts.push([Math.cos(a)*R,Math.sin(a)*R]);}
+      pts.forEach(([a,b],i)=>{const bob=Math.sin(t*2+i)*st*.35;for(let yy=-cr;yy<=cr;yy+=st)for(let xx=-cr;xx<=cr;xx+=st)if(xx*xx+yy*yy<=cr*cr)dot(cx+a+xx,cy+b+yy+bob);});}
+    x.globalAlpha=1;
+  }
+  whenVisible(c,draw);
+});
+
+/* ---------- Sequencing demo (illustrative numbers) ---------- */
+(()=>{
+  const g=document.getElementById('gantt');if(!g)return;
+  const lanes=['Especificação','API e backend','Interface','Testes','Revisão e integração'];
+  // [prepStart,prepLen,start,len,waitStart,waitLen] in days
+  const before=[[0,0,0,3,3,2],[0,0,5,5,10,2],[0,0,12,4,16,1],[0,0,17,3,20,1],[0,0,21,3,0,0]];
+  const after =[[0,2,2,2,0,0],[2,1,3,4,0,0],[2,1,3,4,0,0],[3,1,4,4,0,0],[7,1,8,2,0,0]];
+  const MAX=24,U='d';
+  lanes.forEach(l=>{const ln=document.createElement('div');ln.className='ln';ln.textContent=l;const tr=document.createElement('div');tr.className='track';tr.innerHTML='<div class="gap"></div><div class="bar prep"></div><div class="bar exec"></div>';g.append(ln,tr);});
+  const ax=document.createElement('div');ax.className='axis';ax.innerHTML=[0,6,12,18,24].map(v=>`<span>${v} dias</span>`).join('');g.append(ax);
+  const tracks=[...g.querySelectorAll('.track')];
+  const kL=document.getElementById('kLead'),kI=document.getElementById('kIdle'),kH=document.getElementById('kHand');
+  const bB=document.getElementById('gBefore'),bA=document.getElementById('gAfter');
+  function count(el,to,suf){const from=parseFloat(el.textContent)||0,t0=performance.now();(function f(n){const u=Math.min(1,(n-t0)/700);el.textContent=Math.round(from+(to-from)*(1-Math.pow(1-u,3)))+suf;if(u<1&&!RM)requestAnimationFrame(f);else el.textContent=to+suf;})(t0);}
+  function set(w){const D=w==='after'?after:before;
+    tracks.forEach((tr,i)=>{const [ps,pl,s,l,gs,gl]=D[i],pc=v=>v/MAX*100+'%';const gp=tr.querySelector('.gap'),pr=tr.querySelector('.prep'),ex=tr.querySelector('.exec');
+      gp.style.left=pc(gs);gp.style.width=pc(gl);gp.style.opacity=gl?1:0;pr.style.left=pc(ps);pr.style.width=pc(pl);pr.style.opacity=pl?1:0;ex.style.left=pc(s);ex.style.width=pc(l);});
+    count(kL,Math.max(...D.map(d=>d[2]+d[3])),U);count(kI,D.reduce((a,d)=>a+d[5],0),U);count(kH,w==='after'?0:3,'');
+    bB.setAttribute('aria-pressed',w==='before');bA.setAttribute('aria-pressed',w==='after');}
+  bB.onclick=()=>set('before');bA.onclick=()=>set('after');set('after');
+})();
+
+/* ---------- Form: RD Station Marketing conversion (feeds RD Station CRM) ---------- */
+(()=>{
+  const f=document.getElementById('diag');if(!f)return;
+  const ok=document.getElementById('ok'),btn=f.querySelector('button[type=submit]');
+  const CFG=window.AXONIC_CONFIG||{};
+  const cookie=n=>(document.cookie.match('(^|;)\\s*'+n+'=([^;]*)')||[])[2]||'';
+  const utm=k=>new URLSearchParams(location.search).get(k)||'';
+  f.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const req=[...f.querySelectorAll('[required]')];req.forEach(i=>i.removeAttribute('aria-invalid'));
+    const bad=req.filter(i=>i.type==='checkbox'?!i.checked:(!i.value.trim()||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(i.value))));
+    ok.hidden=false;ok.dataset.state='';
+    if(bad.length){bad.forEach(i=>i.setAttribute('aria-invalid','true'));ok.dataset.state='err';ok.textContent='Preencha nome, cargo, empresa, e-mail corporativo válido e tamanho do time para continuar.';bad[0].focus();return;}
+    const v=n=>(f.elements[n]?.value||'').trim();
+    const payload={
+      conversion_identifier:CFG.RD_CONVERSION||'diagnostico-engenharia',
+      name:v('nome'),email:v('email'),job_title:v('cargo'),company_name:v('empresa'),
+      cf_tamanho_do_time_de_engenharia:v('time'),cf_uso_de_agentes_de_ia:v('uso'),
+      cf_produto:'Dandori',
+      cf_origem:'Site axonictec.com · '+(document.body.dataset.page==='dandori'?'página Dandori':'home Axonic'),
+      tags:['axonic','site-axonic','diagnostico'],
+      available_for_mailing:f.elements['optin']?.checked||false,
+      client_tracking_id:cookie('_rdtrk')||undefined,
+      traffic_source:utm('utm_source')||undefined,traffic_medium:utm('utm_medium')||undefined,traffic_campaign:utm('utm_campaign')||undefined,traffic_value:utm('utm_term')||undefined
+    };
+    if(f.elements['optin']?.checked)payload.legal_bases=[{category:'communications',type:'consent',status:'granted'}];
+    btn.disabled=true;btn.firstChild.textContent='Enviando… ';ok.hidden=true;
+    try{
+      if(!CFG.RD_PUBLIC_TOKEN||CFG.RD_PUBLIC_TOKEN.startsWith('COLE'))throw new Error('config');
+      const r=await fetch('https://api.rd.services/platform/conversions?api_key='+encodeURIComponent(CFG.RD_PUBLIC_TOKEN),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event_type:'CONVERSION',event_family:'CDP',payload})});
+      if(!r.ok)throw new Error('http '+r.status);
+      if(window.gtag)gtag('event','generate_lead',{form_id:'diagnostico',page_type:document.body.dataset.page||'axonic'});
+      (window.dataLayer=window.dataLayer||[]).push({event:'lead_diagnostico',form_id:'diagnostico',page_type:document.body.dataset.page||'axonic',team_size:v('time')});
+      f.querySelectorAll('.f,.optin,button,.note').forEach(el=>el.hidden=true);
+      ok.hidden=false;ok.dataset.state='ok';ok.innerHTML=`<b>Recebemos sua solicitação, ${v('nome').split(' ')[0]}.</b><br>Um especialista da Axonic entra em contato em até 1 dia útil pelo e-mail ${v('email')}.`;
+    }catch(err){
+      ok.hidden=false;ok.dataset.state='err';
+      ok.textContent='Não foi possível enviar agora. Tente de novo em instantes ou escreva para '+(CFG.CONTACT_EMAIL||'contato@axonictec.com')+'.';
+    }finally{btn.disabled=false;btn.firstChild.textContent='Solicitar diagnóstico ';}
+  });
+})();
+
+/* ---------- Reveal on scroll (content is visible at rest) ---------- */
+if(!RM&&'IntersectionObserver' in window){const els=[...document.querySelectorAll('.reveal')].filter(el=>el.getBoundingClientRect().top>innerHeight);
+  els.forEach(el=>el.classList.add('pre'));const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('pre');io.unobserve(en.target);}}),{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(el=>io.observe(el));setTimeout(()=>els.forEach(el=>el.classList.remove('pre')),5000);}
+})();
+
+/* ---------- Cookie notice (LGPD) + Google Consent Mode ---------- */
+(()=>{
+  let v=null;try{v=localStorage.getItem('axonic_consent')}catch(e){}
+  if(v)return;
+  const el=document.createElement('div');el.className='cookie';el.setAttribute('role','region');el.setAttribute('aria-label','Aviso de cookies');
+  el.innerHTML='<p>Usamos cookies de análise (Google Analytics) para entender como o site é usado. Você decide se aceita. Saiba mais na <a href="privacidade.html">Política de Privacidade</a>.</p><div class="cb"><button type="button" data-c="denied">Recusar</button><button type="button" class="ok2" data-c="granted">Aceitar</button></div>';
+  el.addEventListener('click',e=>{const b=e.target.closest('button[data-c]');if(!b)return;const c=b.dataset.c;
+    try{localStorage.setItem('axonic_consent',c)}catch(err){}
+    if(window.gtag)gtag('consent','update',{analytics_storage:c});
+    (window.dataLayer=window.dataLayer||[]).push({event:'consent_update',analytics_consent:c});
+    el.remove();});
+  document.body.appendChild(el);
+})();
+</script>
+
+</body>
+</html>
