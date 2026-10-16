@@ -1,0 +1,23 @@
+# Axonic: www -> domínio principal (o https é forçado pela Hostinger)
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.axonictec\.com$ [NC]
+RewriteRule ^(.*)$ https://axonictec.com/$1 [L,R=301]
+
+# URL limpa para a página do Dandori
+RewriteRule ^dandori/?$ dandori.html [L]
+RewriteRule ^privacidade/?$ privacidade.html [L]
+
+# Página não encontrada volta para a home
+ErrorDocument 404 /index.html
+
+# Cache de arquivos estáticos (imagens, fontes): 30 dias
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType font/woff "access plus 30 days"
+  ExpiresByType application/font-woff "access plus 30 days"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>

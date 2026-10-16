@@ -641,7 +641,7 @@ body.ddp{background:var(--white);font-size:17px}
       <div class="who" aria-hidden="true">
         <img src="img/dd-cut-lookup.webp" alt="">
         <span class="gsym"></span>
-        <svg class="gline" viewBox="0 0 400 309" preserveAspectRatio="none"><path d="M0 308 199 308 200 307 213 306 214 305 222 303 225 301 227 301 231 299 233 297 237 296 239 294 242 293 242 292 247 288 248 288 264 271 264 270 269 264 271 260 279 251 279 250 284 244 286 240 291 235 291 234 296 228 298 224 306 215 306 214 311 208 313 204 318 199 318 198 323 192 325 188 333 179 333 178 338 172 340 168 345 163 345 162 350 156 352 152 357 147 357 146 360 143 360 142 365 136 367 132 372 127 372 126 377 120 379 116 387 107 387 106 392 100 394 96 399 91 291 91 289 90 285 86 284 86 280 82 279 82 275 78 274 78 270 74 269 74 260 65 259 65 255 61 254 61 250 57 249 57 245 53 244 53 236 45 235 45 231 41 230 41 226 37 225 37 221 33 220 33 216 29 215 29 206 20 205 20 202 17 199 16 191 10 187 8 185 8 182 6 180 6 177 4 175 4 174 3 171 3 170 2 165 2 164 1 157 1 156 0 37 0 45 10 45 11 52 18 52 19 64 33 64 34 71 41 71 42 79 51 79 52 86 60 86 61 93 68 93 69 101 78 101 79 104 82 104 83 111 90 111 91 115 95 115 96 119 100 119 101 123 105 123 106 130 113 130 114 141 127 141 128 145 132 145 133 152 140 152 141 160 150 160 151 163 154 163 155 170 162 170 163 182 177 182 178 185 181 185 182 193 190 193 191 196 194 196 195 200 199 199 200 120 200 119 201 111 202 107 204 103 204 98 207 96 207 88 211 86 213 79 217 75 221 74 221 65 230 65 231 61 235 61 236 57 240 57 241 54 243 54 244 49 249 49 250 45 254 45 255 41 259 41 260 37 264 37 265 29 273 29 274 20 284 20 285 16 289 16 290 8 298 8 299Z"/></svg>
+        <svg class="gline" viewBox="0 0 1397.6481 1080" preserveAspectRatio="none" aria-hidden="true"><path d="M0,1080l226.6926849-272.0351164c57.630283-69.1539792,143.0073654-109.1408335,233.0248465-109.1408335h239.1062236L127.0551095,0h398.4234341c70.9525468,0,139.6722263,24.8754642,194.1797994,70.2951963l296.8138072,247.3529038h381.1759499l-480.7651387,641.0199882c-57.282135,76.3765734-147.1839603,121.3319117-242.6638233,121.3319117H0Z"/></svg>
         <div class="chip glass-dark"><b>Dandori Core</b>Planeja a demanda antes de qualquer agente começar.</div>
       </div>
     </div>
@@ -703,6 +703,77 @@ body.ddp{background:var(--white);font-size:17px}
 </section>
 
 <!-- FAQ -->
+<!-- ===== CASO DE CLIENTE: VOA DELIVERY =====
+     Onde colar: em dandori.html, logo DEPOIS do fechamento </section> da seção id="modelo"
+     e ANTES da linha que começa com <section class="section" id="faq". O bloco é autocontido (estilo próprio).
+     Suba também na pasta img/: case-voa-delivery.mp4 e case-voa-delivery-poster.jpg -->
+<style>
+.dd-case{padding-top:0}
+.dd-case .cc{background:var(--d-ink,#111);color:#fff;border-radius:var(--r,30px);padding:clamp(26px,4.4vw,64px);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,64px);position:relative;overflow:hidden;isolation:isolate}
+.dd-case .cc::before{content:"";position:absolute;right:-12%;top:-30%;width:62%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,234,0,.22),rgba(255,234,0,0) 62%);z-index:-1}
+.dd-case .tag{display:inline-flex;gap:8px;align-items:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--d-yellow,#FFEA00)}
+.dd-case .tag i{width:7px;height:7px;border-radius:50%;background:var(--d-yellow,#FFEA00)}
+.dd-case h2{font-size:clamp(32px,3.6vw,54px);line-height:1.02;letter-spacing:-.035em;font-weight:500;margin:16px 0 18px;color:#fff}
+.dd-case .client{font-size:15px;color:rgba(255,255,255,.62);margin:0 0 22px}
+.dd-case .client b{color:#fff;font-weight:500}
+.dd-case .ctx{font-size:16.5px;line-height:1.6;color:rgba(255,255,255,.82);margin:0;max-width:52ch}
+.dd-case .night{border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:22px 22px 20px;background:rgba(255,255,255,.04)}
+.dd-case .night .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.dd-case .time{display:flex;align-items:center;gap:14px;margin:12px 0 6px;font-size:clamp(40px,4.6vw,66px);font-weight:500;letter-spacing:-.05em;line-height:1}
+.dd-case .time .y{color:var(--d-yellow,#FFEA00)}
+.dd-case .time .ar{font-size:.5em;color:rgba(255,255,255,.4)}
+.dd-case .night p{margin:0;font-size:14.5px;color:rgba(255,255,255,.66)}
+.dd-case .kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.dd-case .kpi{border-radius:18px;padding:18px;background:rgba(255,255,255,.06)}
+.dd-case .kpi b{display:block;font-size:clamp(26px,2.6vw,36px);font-weight:500;letter-spacing:-.04em;color:#fff}
+.dd-case .kpi span{font-size:13.5px;line-height:1.4;color:rgba(255,255,255,.62)}
+.dd-case blockquote{grid-column:1/-1;margin:0;padding-top:clamp(22px,3vw,34px);border-top:1px solid rgba(255,255,255,.14);display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.dd-case blockquote .q{font-size:64px;line-height:.7;color:var(--d-yellow,#FFEA00);font-weight:500}
+.dd-case blockquote p{margin:0;font-size:clamp(19px,1.9vw,25px);line-height:1.38;letter-spacing:-.015em;color:#fff}
+.dd-case blockquote cite{display:block;margin-top:12px;font-style:normal;font-size:14px;color:rgba(255,255,255,.6)}
+.dd-case blockquote cite b{color:#fff;font-weight:500}
+.dd-case .vid{grid-column:1/-1;border-radius:22px;overflow:hidden;background:#000;aspect-ratio:16/9;border:1px solid rgba(255,255,255,.12)}
+.dd-case .vid video{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){.dd-case .cc{grid-template-columns:1fr}}
+@media (max-width:420px){.dd-case .kpis{grid-template-columns:1fr}.dd-case blockquote{grid-template-columns:1fr;gap:6px}.dd-case blockquote .q{font-size:48px}}
+</style>
+<section class="section dd-case" id="caso">
+  <div class="wrap">
+    <div class="cc reveal">
+      <div>
+        <span class="tag"><i></i>Caso de cliente</span>
+        <h2>Um MVP complexo, construído em uma noite.</h2>
+        <p class="client"><b>VOA Delivery</b> · logtech com mais de 3 milhões de entregas intermediadas</p>
+        <p class="ctx">Com três desenvolvedores, o backlog de produto da VOA crescia mais rápido do que o time conseguia entregar. Com o Dandori, os agentes passaram a trabalhar 24 horas por dia, coordenados pelo próprio time. O backlog represado por falta de braço voltou a andar.</p>
+      </div>
+      <div>
+        <div class="night">
+          <span class="lbl">Do início à entrega do MVP</span>
+          <div class="time"><span>23h43</span><span class="ar">→</span><span class="y">8h50</span></div>
+          <p>O Dandori começou o projeto às 23h43 e entregou o MVP às 8h50 do dia seguinte.</p>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><b>3 devs</b><span>com capacidade de 30, segundo o cliente</span></div>
+          <div class="kpi"><b>24/7</b><span>agentes de IA trabalhando para o time</span></div>
+        </div>
+      </div>
+      <div class="vid">
+        <video controls playsinline preload="none" poster="img/case-voa-delivery-poster.jpg" aria-label="Depoimento de Ricardo Longa, da VOA Delivery, sobre o Dandori" onplay="if(window.gtag&&!this.dataset.p){this.dataset.p=1;gtag('event','video_start',{video_title:'Case VOA Delivery'})}">
+          <source src="img/case-voa-delivery.mp4" type="video/mp4">
+        </video>
+      </div>
+      <blockquote>
+        <span class="q" aria-hidden="true">“</span>
+        <div>
+          <p>Hoje somos três desenvolvedores e, com o Dandori, é como se estivéssemos com 30. Pegue o seu melhor desenvolvedor, coloque o Dandori nas mãos dele e aguarde uns três dias.</p>
+          <cite><b>Ricardo Longa</b> · VOA Delivery</cite>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+</section>
+<!-- ===== FIM DO CASO ===== -->
+
 <section class="section" id="faq" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal"><h2>Perguntas frequentes.</h2><p>O que líderes de engenharia costumam perguntar antes do diagnóstico.</p></div>
